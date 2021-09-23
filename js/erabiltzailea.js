@@ -1,8 +1,7 @@
 function erabiltzailea() {
     var erabil1={
         izena: "Manu",
-        pasahitza: "123",
-        
+        pasahitza: "123",     
         }
         const erabiltzaileak= new Array(erabil1);
         prompt("Sartu erabiltzaile izena:")
