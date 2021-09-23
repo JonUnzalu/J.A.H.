@@ -15,7 +15,7 @@ function erabiltzailea() {
 
     gureErabiltzailea.izena = prompt("Sartu erabiltzaile izena: ")
 
-    if(gureErabiltzailea.izena!="" || gureErabiltzailea.izena===null){
+    if(gureErabiltzailea.izena!="" && !(gureErabiltzailea.izena==null)){
         gureErabiltzailea.pasahitza = prompt("Sartu pasahitza: ")
     }else{
         alert("Ez zera erabiltzailea.")
