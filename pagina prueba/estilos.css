@@ -1,0 +1,30 @@
+/*To make dissapear the scrollbar of the webpage*/
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.bg-yellow{
+    background: green;
+	text-align: center;
+	color: rgb(248, 245, 245);
+}
+.jumbotron{
+    height: 120px;
+background: rgb(0,0,0);
+background: linear-gradient(90deg, rgb(240, 27, 27) 0%, 
+	rgba(214, 54, 54, 0.869) 35%, rgb(219, 89, 89) 100%);
+	text-align: center;
+}
+.imag{
+    border-radius: 6px;
+    width:100%;
+    object-fit: cover;
+    height: 420px;
+    }
+    /*style for all the icons put on the webpage.*/
+.material-icons-outlined{
+    font-size: 26px;
+    display: block;
+    text-align: center;
+    
+}
