@@ -30,3 +30,25 @@ function erabiltzailea() {
     }
 
 }
+
+function data() {
+    
+}
+
+function erosketak() {
+    
+}
+
+function bezeroa() {
+    var bezeroa={
+    Nan:prompt("Sartu Nan:"),
+    Izena: prompt("Sartu Izena:"),
+    Abizena: prompt("Sartu Abizena:"),
+    Telefonoa: prompt("Sartu Telefonoa:"),
+    Helbidea: prompt("Sartu Helbidea:"),
+    PostaKodea: prompt("Sartu PostaKodea:") 
+    }
+    const bezeroak = new Array( );
+    bezeroak.push(bezeroa);
+    
+}
