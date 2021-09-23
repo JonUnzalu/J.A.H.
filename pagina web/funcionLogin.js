@@ -32,22 +32,59 @@ function erabiltzailea() {
 }
 
 function data() {
+
+
+
+
     
 }
 
 function erosketak() {
+    var erosketa={
+        CodEskaera: "",
+        NanBezeroa: "",
+        NanBanatzailea: "",
+        IdJanaria: "",
+        EskaeraData: "",
+        Entregatua: "",
+        PrezioTotala: ""
+        }
+        
+        erosketa.CodEskaera= prompt("Sartu CodEskaera:")
+        erosketa.NanBezeroa= prompt("Sartu NanBezeroa:")
+        erosketa.NanBanatzailea= prompt("Sartu NanBanatzailea:")
+        erosketa.IdJanaria= prompt("Sartu IdJanaria:")
+        erosketa.EskaeraData= prompt("Sartu EskaeraData:")
+        erosketa.Entregatua= prompt("Sartu Entregatua:")
+        erosketa.PrezioTotala= prompt("Sartu PrezioTotala:")
+
+        const erosketak = new Array( );
+        erosketak.forEach(erosketa => {
+            erosketak.push(erosketa);
+            
+        });
+
+
+
     
 }
 
 function bezeroa() {
     var bezeroa={
-    Nan:prompt("Sartu Nan:"),
-    Izena: prompt("Sartu Izena:"),
-    Abizena: prompt("Sartu Abizena:"),
-    Telefonoa: prompt("Sartu Telefonoa:"),
-    Helbidea: prompt("Sartu Helbidea:"),
-    PostaKodea: prompt("Sartu PostaKodea:") 
+    Nan: "",
+    Izena: "",
+    Abizena: "",
+    Telefonoa: "",
+    Helbidea: "",
+    PostaKodea: ""
     }
+    bezeroa.Nan= prompt("Sartu Nan:")
+    bezeroa.Izena= prompt("Sartu Izena:")
+    bezeroa.Abizena= prompt("Sartu Abizena:")
+    bezeroa.Telefonoa= prompt("Sartu Telefonoa:")
+    bezeroa.Helbidea= prompt("Sartu Helbidea:")
+    bezeroa.Postakodea= prompt("Sartu Helbidea:")
+
     const bezeroak = new Array( );
     bezeroak.push(bezeroa);
     
