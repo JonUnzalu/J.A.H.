@@ -3,6 +3,16 @@
   background-position: 50% 50%;
 }
 
+.u-section-2 {
+  background-image: url("images/burgerBack.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-3 {
+  background-image: url("images/pizzaback.jpg");
+  background-position: 50% 50%;
+}
+
 .u-food-image{
   height: 200px;
   width: 200px;
@@ -75,6 +85,7 @@
 
 .u-section-1 .u-layout-cell-3 {
   min-height: 335px;
+  margin-bottom: 50px;
 }
 
 .u-section-1 .u-container-layout-3 {
@@ -102,6 +113,7 @@
 
 .u-section-1 .u-layout-cell-4 {
   min-height: 335px;
+  margin-bottom: 50px;
 }
 
 .u-section-1 .u-container-layout-4 {
