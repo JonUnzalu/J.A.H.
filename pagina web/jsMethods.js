@@ -24,23 +24,28 @@ function erosketak() {
         });
 }
 
+var kopuruak = new Array();
 
-
-var kopurua = 0;
-document.getElementById("kopurua").innerHTML = kopurua;
-
-
-function getFood(codJanaria){
-    var kopurua = 1;
-    return kopurua;
+function initFoods(){
+    for(let i=0;i<14;i++){
+        const kopuruxJanari = {
+            kopurua: 0,
+            idJanari : i
+        }
+        kopuruak.push(kopuruxJanari)
+        document.getElementById("kopurua"+i).innerHTML = kopuruak[i].kopurua;
+    }
 }
 
+
 function addFood(codJanaria){
-    kopurua = kopurua + 1;
-    document.getElementById("kopurua").innerHTML = kopurua;
+    kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua + 1;
+    document.getElementById("kopurua"+codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 }
 
 function subtractFood(codJanaria){
-    kopurua = kopurua - 1;
-    document.getElementById("kopurua").innerHTML = kopurua;
+    if(kopuruak[codJanaria].kopurua>0){
+        kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua - 1;
+        document.getElementById("kopurua"+codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
+    }
 }
