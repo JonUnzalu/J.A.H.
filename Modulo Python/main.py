@@ -37,18 +37,20 @@ try:
     sql7 = "INSERT INTO JANARIA (JanariIzena, Prezioa, Kopurua) VALUES ('Kebap', 5.99, 20), ('Kalipo', 2.00, 20);"
     sql8 = "INSERT INTO ESKAERA (NanBezeroa, EskaeraData, Entregatua, PrezioTotala, NanBanatzailea) VALUES ('12345678A', '2021-09-15 23:59:59', TRUE,0.00,'11111111A'), ('12345678A', '2021-09-16 23:59:59', FALSE,0.00,'11111111B');"
     sql9 = "INSERT INTO SASKIA (IdJanaria, CodEskaera, Kopurua) VALUES (1, 1, 2), (2, 1, 1), (1, 2, 1);"
+    sql10 = "INSERT INTO JANARIA (JanariIzena, Prezioa, Kopurua) VALUES ('Durum', 6.99, 20), ('Lahmacun', 7.00, 20), ('Burger klasikoa', 8.00, 20), ('Oilasko burger', 8.00, 20), ('Burger bikoitza', 8.00, 20), ('Margarita', 8.00, 20), ('Bacon', 8.00, 20), ('Barbakoa', 8.00, 20), ('Karbonara', 8.00, 20), ('Triple haragi', 8.00, 20), ('Kebap doner', 8.00, 20), ('Pedrata', 3.00, 20);"
 
     cur = conn.cursor()
-    cur.execute(sql)
-    cur.execute(sql1)
-    cur.execute(sql2)
-    cur.execute(sql3)
-    cur.execute(sql4)
-    cur.execute(sql5)
-    cur.execute(sql6)
-    cur.execute(sql7)
-    cur.execute(sql8)
-    cur.execute(sql9)
+    ##cur.execute(sql)
+    ##cur.execute(sql1)
+    ##cur.execute(sql2)
+    ##cur.execute(sql3)
+    ##cur.execute(sql4)
+    ##cur.execute(sql5)
+    ##cur.execute(sql6)
+    ##cur.execute(sql7)
+    ##cur.execute(sql8)
+    ##cur.execute(sql9)
+    cur.execute(sql10)
     conn.commit()
 
 
