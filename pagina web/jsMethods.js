@@ -22,8 +22,9 @@ function erosketak() {
             erosketak.push(erosketa);
             
         });
-
 }
+
+
 
 var kopurua = 0;
 document.getElementById("kopurua").innerHTML = kopurua;
