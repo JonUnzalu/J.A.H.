@@ -1,3 +1,11 @@
+.margin{
+  margin-bottom: 80px;
+}
+.center{
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
 .botoia{
   margin: 20px auto 20px;
 }
@@ -8,6 +16,9 @@
 }
 .icon2{
   font-size:20px;
+}
+.icon3{
+  font-size:28px;
 }
 .imagen{
   background-image: url("images/hamburgesita.jpg");
