@@ -19,6 +19,22 @@
   margin-left: 12%;
 }
 
+.u-food-image2{
+  height: 200px;
+  width: 200px;
+  margin-left: 20%;
+}
+
+.u-textpizza{
+  color: wheat;
+  text-align: center;
+}
+
+.u-textpizza2{
+  color: black;
+  text-align: center;
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 796px;
 }
