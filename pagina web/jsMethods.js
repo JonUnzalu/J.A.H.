@@ -87,10 +87,12 @@ function initFoods() {
 
 
 function addFood(codJanaria) {
-    kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua + 1;
-    document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
+    if (kopuruak[codJanaria].kopurua < kopuruak[codJanaria].kopuruMax) {
+        kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua + 1;
+        document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
-    sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+        sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+    }
 }
 
 function subtractFood(codJanaria) {
