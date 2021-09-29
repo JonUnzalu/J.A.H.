@@ -1,11 +1,20 @@
 .iconcolor{
   color: white;;
 }
+.iframe{
+  display: block;
+  margin:  auto;
+  height: auto;
+  width: 825px;
+  float: left;
+  max-width: 100%;
+}
+.margins{
+  padding: 50px 50px 50px 50px;
+  
+}
 .margin{
   margin-bottom: 80px;
-}
-.margin2{
-  margin-bottom: 200px;
 }
 .center{
   text-align: center;
