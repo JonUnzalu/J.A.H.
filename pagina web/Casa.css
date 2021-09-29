@@ -5,6 +5,12 @@
   width: auto;
   max-width: 100%;
 }
+input{
+  background-color: lightgrey;
+}
+textarea{
+  background-color: lightgrey;
+}
 .iconcolor{
   color: white;;
 }
