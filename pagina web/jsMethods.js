@@ -99,3 +99,47 @@ function subtractFood(codJanaria) {
 function onTabClosing() {
     sessionStorage.clear();
 }
+
+
+function beherapenak() {
+    var erosketa={
+        bezeroizena: "",
+        produktuizena: "",
+        produktukantitatea: "",
+        produktuprezioa: "",
+        
+        }
+        
+        erosketa.bezeroizena= prompt("Nola deitzen zara?")
+        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
+        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
+        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
+        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
+        var beherapena = guztira - 5
+        if (guztira>20) {
+            alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€\n" + "Beherapenarekin:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ beherapena+"€")         
+        }
+           else{
+           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa guztira:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+           }
+
+    
+}
+
+function saskia() {
+    var erosketa={
+        bezeroizena: "",
+        produktuizena: "",
+        produktukantitatea: "",
+        produktuprezioa: "",
+        
+        }
+        
+        erosketa.bezeroizena= prompt("Nola deitzen zara?")
+        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
+        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
+        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
+        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
+           
+           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+    }
