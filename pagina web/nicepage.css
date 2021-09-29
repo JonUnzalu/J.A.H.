@@ -3,7 +3,9 @@
  * License https://froala.com/wysiwyg-editor/terms/
  * Copyright 2014-2020 Froala Labs
  */
-
+.shadow{
+  text-shadow: 5px 2px #660000;
+}
 .fr-clearfix::after {
   clear: both;
   display: block;
