@@ -27,7 +27,6 @@ function erabiltzailea() {
             alert("Erabiltzailea zera.")
             sessionStorage.setItem("logState", "true");
             document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
-            //document.getElementsByClassName("kopuruak").style.visibility = "visible";
         }
         else {
             alert("Ez zera erabiltzailea.")
@@ -38,7 +37,6 @@ function erabiltzailea() {
         loginState = "Login";
         document.getElementById("loginState").innerHTML = loginState;
         document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
-        //document.getElementsByClassName("kopuruak").style.visibility = "hidden";
     }
 }
 
@@ -47,13 +45,11 @@ if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logSt
     loginState = "Logout";
     document.getElementById("loginState").innerHTML = loginState;
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
-    //document.getElementsByClassName("kopuruak").style.visibility = "visible";
 } else {
     loginState = "Login";
     sessionStorage.setItem("logState", "false");
     document.getElementById("loginState").innerHTML = loginState;
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
-    //document.getElementsByClassName("kopuruak").style.visibility = "hidden";
 }
 
 var kopuruak = new Array()
@@ -73,6 +69,7 @@ function initFoods() {
         for (let i = 0; i < 14; i++) {
             const kopuruxJanari = {
                 kopurua: 0,
+                kopuruMax: 20,
                 idJanari: i
             }
             kopuruak.push(kopuruxJanari)
