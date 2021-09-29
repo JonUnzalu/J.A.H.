@@ -26,6 +26,8 @@ function erabiltzailea() {
         if ((erabiltzaileak[0].izena == gureErabiltzailea.izena) && (erabiltzaileak[0].pasahitza == gureErabiltzailea.pasahitza)) {
             alert("Erabiltzailea zera.")
             sessionStorage.setItem("logState", "true");
+            document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
+            //document.getElementsByClassName("kopuruak").style.visibility = "visible";
         }
         else {
             alert("Ez zera erabiltzailea.")
@@ -35,6 +37,8 @@ function erabiltzailea() {
         sessionStorage.clear();
         loginState = "Login";
         document.getElementById("loginState").innerHTML = loginState;
+        document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
+        //document.getElementsByClassName("kopuruak").style.visibility = "hidden";
     }
 }
 
@@ -42,10 +46,14 @@ var loginState = "Login";
 if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logState") == "true") {
     loginState = "Logout";
     document.getElementById("loginState").innerHTML = loginState;
+    document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
+    //document.getElementsByClassName("kopuruak").style.visibility = "visible";
 } else {
     loginState = "Login";
     sessionStorage.setItem("logState", "false");
     document.getElementById("loginState").innerHTML = loginState;
+    document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
+    //document.getElementsByClassName("kopuruak").style.visibility = "hidden";
 }
 
 var kopuruak = new Array()
