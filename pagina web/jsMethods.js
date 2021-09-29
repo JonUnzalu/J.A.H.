@@ -57,8 +57,13 @@ if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("
     kopuruak = [];
     kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-    for (let i = 0; i < kopuruak.length; i++) {
-        document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
+    if (window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/About.html"){
+        for (let i = 0; i < kopuruak.length; i++) {
+            document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
+        }
+    }
+    else if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html"){
+        refreshCart();
     }
 }
 
@@ -86,7 +91,6 @@ function addFood(codJanaria) {
     document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
     sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
-    refreshCart();
 }
 
 function subtractFood(codJanaria) {
@@ -95,14 +99,28 @@ function subtractFood(codJanaria) {
         document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
         sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
-        refreshCart();
     }
 }
 
 function refreshCart(){
+    let e =0;
+    let prezioTotala = 0;
     for(let i=0; i<kopuruak.length;i++){
-        
+        if(kopuruak[i].kopurua>0){
+            var uwu = kopuruak[i].prezioa;
+
+            if(e>0){
+                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<br>" + "Janaria:" + kopuruak[i].idJanari + " Kopurua: " + kopuruak[i].kopurua;
+                prezioTotala = prezioTotala + (parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua));
+            }
+            else{
+                document.getElementById("saskiItem").innerHTML = "Janaria:" + kopuruak[i].idJanari + " Kopurua: " + kopuruak[i].kopurua;
+                prezioTotala = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua);
+            }
+            e++;
+        }
     }
+    document.getElementById("prezioaTotala").innerHTML = "Prezioa guztira: " + prezioTotala + "€"
 }
 
 function onTabClosing() {
