@@ -70,6 +70,7 @@ function initFoods() {
             const kopuruxJanari = {
                 kopurua: 0,
                 kopuruMax: 20,
+                prezioa: document.getElementById("prezioa"+i).innerHTML,
                 idJanari: i
             }
             kopuruak.push(kopuruxJanari)
@@ -85,6 +86,7 @@ function addFood(codJanaria) {
     document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
     sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+    refreshCart();
 }
 
 function subtractFood(codJanaria) {
@@ -93,6 +95,13 @@ function subtractFood(codJanaria) {
         document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
         sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+        refreshCart();
+    }
+}
+
+function refreshCart(){
+    for(let i=0; i<kopuruak.length;i++){
+        
     }
 }
 
