@@ -1,3 +1,10 @@
+.gif{
+  display: block;
+  margin: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+}
 .iconcolor{
   color: white;;
 }
