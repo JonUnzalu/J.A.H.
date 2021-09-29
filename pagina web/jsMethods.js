@@ -26,6 +26,7 @@ function erabiltzailea() {
         if ((erabiltzaileak[0].izena == gureErabiltzailea.izena) && (erabiltzaileak[0].pasahitza == gureErabiltzailea.pasahitza)) {
             alert("Erabiltzailea zera.")
             sessionStorage.setItem("logState", "true");
+            document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
         }
         else {
             alert("Ez zera erabiltzailea.")
@@ -35,6 +36,7 @@ function erabiltzailea() {
         sessionStorage.clear();
         loginState = "Login";
         document.getElementById("loginState").innerHTML = loginState;
+        document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
     }
 }
 
@@ -42,10 +44,12 @@ var loginState = "Login";
 if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logState") == "true") {
     loginState = "Logout";
     document.getElementById("loginState").innerHTML = loginState;
+    document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
 } else {
     loginState = "Login";
     sessionStorage.setItem("logState", "false");
     document.getElementById("loginState").innerHTML = loginState;
+    document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
 var kopuruak = new Array()
@@ -65,6 +69,8 @@ function initFoods() {
         for (let i = 0; i < 14; i++) {
             const kopuruxJanari = {
                 kopurua: 0,
+                kopuruMax: 20,
+                prezioa: document.getElementById("prezioa"+i).innerHTML,
                 idJanari: i
             }
             kopuruak.push(kopuruxJanari)
@@ -80,6 +86,7 @@ function addFood(codJanaria) {
     document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
     sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+    refreshCart();
 }
 
 function subtractFood(codJanaria) {
@@ -88,9 +95,60 @@ function subtractFood(codJanaria) {
         document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
 
         sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
+        refreshCart();
+    }
+}
+
+function refreshCart(){
+    for(let i=0; i<kopuruak.length;i++){
+        
     }
 }
 
 function onTabClosing() {
     sessionStorage.clear();
 }
+
+
+function beherapenak() {
+    var erosketa={
+        bezeroizena: "",
+        produktuizena: "",
+        produktukantitatea: "",
+        produktuprezioa: "",
+        
+        }
+        
+        erosketa.bezeroizena= prompt("Nola deitzen zara?")
+        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
+        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
+        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
+        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
+        var beherapena = guztira - 5
+        if (guztira>20) {
+            alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€\n" + "Beherapenarekin:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ beherapena+"€")         
+        }
+           else{
+           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa guztira:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+           }
+
+    
+}
+
+function saskia() {
+    var erosketa={
+        bezeroizena: "",
+        produktuizena: "",
+        produktukantitatea: "",
+        produktuprezioa: "",
+        
+        }
+        
+        erosketa.bezeroizena= prompt("Nola deitzen zara?")
+        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
+        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
+        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
+        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
+           
+           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+    }
