@@ -4,9 +4,12 @@
 .margin{
   margin-bottom: 80px;
 }
+.margin2{
+  margin-bottom: 200px;
+}
 .center{
   text-align: center;
-  margin: 0 auto;
+  margin: auto;
   display: block;
 }
 .botoia{
