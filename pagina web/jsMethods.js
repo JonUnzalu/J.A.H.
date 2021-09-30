@@ -52,6 +52,19 @@ if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logSt
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
+//si estamos en saskia
+if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
+    if(loginState == "Login"){
+        document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
+        document.getElementById("divSaskia").style.display = "initial"
+    }
+    else{
+        document.getElementById("ordainketa").innerHTML = "Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
+        document.getElementById("divSaskia").style.display = "none"
+    }
+}
+
+
 var kopuruak = new Array()
 if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
     kopuruak = [];
