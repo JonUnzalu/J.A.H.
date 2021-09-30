@@ -77,12 +77,12 @@ if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("
     kopuruak = [];
     kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-    if (window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/About.html"){
+    if (window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/About.html" || window.location.href=="http://192.168.73.13:8080/About.html"){
         for (let i = 0; i < kopuruak.length; i++) {
             document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
         }
     }
-    else if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html"){
+    else if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
         refreshCart();
     }
 }
@@ -145,7 +145,9 @@ function refreshCart(){
             e++;
         }
     }
-    document.getElementById("prezioaTotala").innerHTML = "Prezioa guztira: " + prezioTotala.toFixed(2) + "€"
+    if(document.getElementById("saskiItem").innerHTML!=""){
+        document.getElementById("prezioaTotala").innerHTML = "Prezioa guztira: " + prezioTotala.toFixed(2) + "€"
+    }
 }
 
 function onTabClosing() {
