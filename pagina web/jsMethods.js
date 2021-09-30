@@ -116,11 +116,11 @@ function refreshCart(){
             if(e>0){
                 prezioLinea = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua)
                 prezioTotala = prezioTotala + prezioLinea;
-                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<li>" + prezioLinea + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<li>" + prezioLinea.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
             }
             else{
                 prezioTotala = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua);
-                document.getElementById("saskiItem").innerHTML = "<li>" + prezioTotala + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+                document.getElementById("saskiItem").innerHTML = "<li>" + prezioTotala.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
             }
             e++;
         }
