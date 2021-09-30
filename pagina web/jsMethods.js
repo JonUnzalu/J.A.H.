@@ -52,6 +52,19 @@ if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logSt
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
+//si estamos en saskia
+if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
+    if(loginState == "Login"){
+        document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
+        document.getElementById("divSaskia").style.display = "initial"
+    }
+    else{
+        document.getElementById("ordainketa").innerHTML = "Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
+        document.getElementById("divSaskia").style.display = "none"
+    }
+}
+
+
 var kopuruak = new Array()
 if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
     kopuruak = [];
@@ -116,11 +129,11 @@ function refreshCart(){
             if(e>0){
                 prezioLinea = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua)
                 prezioTotala = prezioTotala + prezioLinea;
-                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<li>" + prezioLinea + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<li>" + prezioLinea.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
             }
             else{
                 prezioTotala = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua);
-                document.getElementById("saskiItem").innerHTML = "<li>" + prezioTotala + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+                document.getElementById("saskiItem").innerHTML = "<li>" + prezioTotala.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
             }
             e++;
         }
