@@ -52,25 +52,6 @@ if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logSt
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
-//si estamos en saskia
-if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
-    if(loginState == "Logout"){ //si estamos logueados
-        if(document.getElementById("saskiItem").innerHTML==""){
-            document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
-        }
-        else{
-            document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
-        }
-        document.getElementById("divSaskia").style.display = "initial"
-        document.getElementById("divDatos").style.display = "true"
-    }
-    else{                       //si no estamos logueados
-        document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
-        document.getElementById("divSaskia").style.display = "none"
-        document.getElementById("divDatos").style.display = "false"
-    }
-}
-
 
 var kopuruak = new Array()
 if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
@@ -84,6 +65,38 @@ if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("
     }
     else if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
         refreshCart();
+    }
+}
+
+//si estamos en saskia
+if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
+    if(loginState == "Logout"){ //si estamos logueados
+        if(document.getElementById("saskiItem").innerHTML==""){
+            document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
+            document.getElementById("divDatos").style.display = "none"
+            document.getElementById("parentDivForm").style.display = "none"
+        }
+        else{
+            document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
+            //document.getElementById("parentDivForm").style.display = "true"
+        }
+        document.getElementById("divSaskia").style.display = "initial"
+        document.getElementById("divDatos").style.display = "true"
+    }
+    else{                       //si no estamos logueados
+        document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
+        document.getElementById("divSaskia").style.display = "none"
+        document.getElementById("divDatos").style.display = "none"
+        document.getElementById("parentDivForm").style.display = "none"
+    }
+    document.getElementById("divTxartela").style.display = "none"
+}
+
+function showForms(){
+    if(loginState =="Logout"){
+        if(document.getElementById("saskiItem").innerHTML==""){
+        document.getElementById("divTxartela").style.display = "block";
+        }
     }
 }
 
@@ -196,4 +209,4 @@ function saskia() {
         var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
            
            alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
-    }
+}

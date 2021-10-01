@@ -12,13 +12,16 @@
   <link rel="stylesheet" href="nicepage.css" media="screen">
   <link rel="stylesheet" href="Contact.css" media="screen">
 
+
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="jsMethods.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <meta name="generator" content="Nicepage 3.26.0, nicepage.com">
-  <link id="u-theme-google-font" rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+  <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
   <link rel="shortcut icon" href="images/logo hecho.PNG" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -109,7 +112,7 @@
   </header>
 
   <h1 style="text-align: center;">Saskia</h1>
-
+  <br><br>
   <div class="divSaskia" id="divSaskia">
 
     <ol id="saskiItem" class="custom-counter"></ol>
@@ -117,48 +120,93 @@
   </div>
 
   <h3 class="center" id="ordainketa"></h3>
-  <div
+  <div id="ordainketaMetodoak"
     class="u-align-center u-container-style u-layout-cell u-center-cell u-opacity u-opacity-85 u-size-30 u-white u-layout-cell-1"
     style="width: 50%; margin: auto;">
-    <div class=" u-container-layout u-valign-middle u-container-layout-1 center">
-      <a href="https://www.paypal.com"><img src="images/iconopaypal.png" style="padding: 0px; height: 150px;"></a>
+    <div class=" u-container-layout u-valign-middle u-container-layout-1 center" onclick="showForms()">
+      <img src="images/iconopaypal.png" style="padding: 0px; width: 200px; height: auto;" >
     </div>
     <div class=" u-container-layout u-valign-middle u-container-layout-1 center">
-      <a href="https://bizum.es"><img src="images/bizum logo.jpeg" style="padding: 0px; height: 150px;"></a>
-    </div>
-    <div class=" u-container-layout u-valign-middle u-container-layout-1 center">
-      <img src="images/iconoeskuz.png" style="padding: 0px; ">
+      <img src="images/iconoeskuz.png" style="padding: 0px; width: 235px; height: auto;">
     </div>
   </div>
-
-  <div id="divDatos" class="u-align-left u-container-style u-layout-cell u-left-cell  u-size-30  u-layout-cell-4">
-    <div class="margins"
-      style="float: left;width: 600px;height: auto; padding-top: 20px;max-width: 100%;margin:auto;border: 1px solid black">
-      <form action="/action_page.php">
-        <div>
-          <h2 class="center">Zure helbide datuak sartu</h2>
-        </div>
-        <div class="u-sheet">
-          <div>
-            <div style="width: 30px;height: auto; position: relative;float: left;"><i class=" icon3"></i></div><input
-              type="text" id="herria" name="herria" placeholder="Herria"><br><br>
+  
+  <div class="parentDivForm" id="parentDivForm">
+  <div class="creditCardForm childDivForm">
+    <div id="divDatos">
+      <div class="heading">
+        <h1 class="center">Helbide informazioa</h1>
+      </div>
+      <div class="payment">
+        <form>
+          <div class="form-group owner">
+            <label for="owner">Helbidea</label>
+            <input type="text" class="form-control" id="helbidea">
           </div>
-        </div>
-        <div class="u-sheet">
-          <div>
-            <div style="width: 30px;height: auto; position: relative;float: left;"><i class=" icon3"></i></div><input
-              type="text" id="helbidea" name="helbidea" placeholder="Helbidea"><br><br>
+          <div class="form-group CVV">
+            <label for="cvv">Posta kodea</label>
+            <input type="text" class="form-control" id="cvv">
           </div>
+        </form>
+    </div>
+  </div>
+  </div>
+  <div class="creditCardForm childDivForm" id="divTxartela">
+    <div class="heading">
+      <h1>Kreditu txartel informazioa</h1>
+    </div>
+    <div class="payment">
+      <form>
+        <div class="form-group owner">
+          <label for="owner">Izena</label>
+          <input type="text" class="form-control" id="owner">
         </div>
-        <div class="u-sheet">
-          <div>
-            <div style="width: 30px;height: auto; position: relative;float: left;"><i class=" icon3"></i></div><input
-              type="text" id="postakod" name="postakodea" placeholder="Posta Kodea"><br><br>
-          </div>
+        <div class="form-group CVV">
+          <label for="cvv">CVV</label>
+          <input type="text" class="form-control" id="cvv">
+        </div>
+        <div class="form-group" id="card-number-field">
+          <label for="cardNumber">Txartel zenbakia</label>
+          <input type="text" class="form-control" id="cardNumber">
+        </div>
+        <div class="form-group" id="expiration-date">
+          <label>Iraungitze data</label>
+          <select>
+            <option value="01">Urtarrila</option>
+            <option value="02">Otsaila </option>
+            <option value="03">Martxoa</option>
+            <option value="04">Apirila</option>
+            <option value="05">Maiatza</option>
+            <option value="06">Ekaina</option>
+            <option value="07">Uztaila</option>
+            <option value="08">Abuztua</option>
+            <option value="09">Iraila</option>
+            <option value="10">Urria</option>
+            <option value="11">Azaroa</option>
+            <option value="12">Abendua</option>
+          </select>
+          <select>
+            <option value="16"> 2022</option>
+            <option value="17"> 2023</option>
+            <option value="18"> 2024</option>
+            <option value="19"> 2025</option>
+            <option value="20"> 2026</option>
+            <option value="21"> 2027</option>
+          </select>
+        </div>
+        <div class="form-group" id="credit_cards">
+          <img src="images/visa.jpg" id="visa">
+          <img src="images/mastercard.jpg" id="mastercard">
+          <img src="images/amex.jpg" id="amex">
         </div>
       </form>
     </div>
-  </div><br>
+  </div>
+  <div class="form-group" id="pay-now">
+    <button type="submit" style="height: 60px; width: 250px;   font-size: 24px; background-color: #2ec4a5;" class="btn btn-default" id="confirm-purchase">Baieztatu</button>
+  </div>
+  </div>
+  <br>
 
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-85f5">
     <div class="u-clearfix u-sheet u-sheet-1">
