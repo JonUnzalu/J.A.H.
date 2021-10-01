@@ -1,9 +1,5 @@
-.gif{
-  display: block;
-  margin: auto;
-  height: auto;
-  width: auto;
-  max-width: 100%;
+.shadow{
+  text-shadow: 2px 2px #FF0000;
 }
 input{
   background-color: lightgrey;
