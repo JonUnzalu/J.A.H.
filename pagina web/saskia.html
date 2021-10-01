@@ -114,25 +114,29 @@
   <h1 style="text-align: center;">Saskia</h1>
   <br><br>
   <div class="divSaskia" id="divSaskia">
-
-    <ol id="saskiItem" class="custom-counter"></ol>
-    <p id="prezioaTotala"></p>
+    <div style="border: solid black; border-radius: 10px; margin-left: 30%; margin-right: 30%;">
+      <ol id="saskiItem" class="custom-counter" style="padding: 10px;"></ol>
+      <p id="prezioaTotala"></p>
+    </div>
   </div>
 
+  <br><br>
   <h3 class="center" id="ordainketa"></h3>
   <div id="ordainketaMetodoak"
     class="u-align-center u-container-style u-layout-cell u-center-cell u-opacity u-opacity-85 u-size-30 u-white u-layout-cell-1"
     style="width: 50%; margin: auto;">
-    <div class=" u-container-layout u-valign-middle u-container-layout-1 center" onclick="showForms()">
+    <div class=" u-container-layout u-valign-middle u-container-layout-1 center" onclick="showAllForms()">
+      <h3>Kreditu txartelaz</h3>
       <img src="images/iconopaypal.png" style="padding: 0px; width: 200px; height: auto;" >
     </div>
-    <div class=" u-container-layout u-valign-middle u-container-layout-1 center">
+    <div class=" u-container-layout u-valign-middle u-container-layout-1 center" onclick="showAddressForm()">
+      <h3>Eskuz</h3>
       <img src="images/iconoeskuz.png" style="padding: 0px; width: 235px; height: auto;">
     </div>
   </div>
   
   <div class="parentDivForm" id="parentDivForm">
-  <div class="creditCardForm childDivForm">
+  <div class="creditCardForm childDivForm" id="divHelbidea">
     <div id="divDatos">
       <div class="heading">
         <h1 class="center">Helbide informazioa</h1>

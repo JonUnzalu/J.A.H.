@@ -78,10 +78,10 @@ if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || wi
         }
         else{
             document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
-            //document.getElementById("parentDivForm").style.display = "true"
+            document.getElementById("parentDivForm").style.display = "none"
         }
         document.getElementById("divSaskia").style.display = "initial"
-        document.getElementById("divDatos").style.display = "true"
+        document.getElementById("divDatos").style.display = "initial"
     }
     else{                       //si no estamos logueados
         document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
@@ -89,13 +89,24 @@ if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || wi
         document.getElementById("divDatos").style.display = "none"
         document.getElementById("parentDivForm").style.display = "none"
     }
-    document.getElementById("divTxartela").style.display = "none"
 }
 
-function showForms(){
+function showAllForms(){
     if(loginState =="Logout"){
-        if(document.getElementById("saskiItem").innerHTML==""){
-        document.getElementById("divTxartela").style.display = "block";
+        if(document.getElementById("saskiItem").innerHTML!=""){
+            document.getElementById("parentDivForm").style.display = "block"
+            document.getElementById("divTxartela").style.display = "inline-block"
+            document.getElementById("divHelbidea").style.display = "inline-block"
+        }
+    }
+}
+
+function showAddressForm(){
+    if(loginState =="Logout"){
+        if(document.getElementById("saskiItem").innerHTML!=""){
+            document.getElementById("parentDivForm").style.display = "block"
+            document.getElementById("divHelbidea").style.display = "inline-block"
+            document.getElementById("divTxartela").style.display = "none"
         }
     }
 }
