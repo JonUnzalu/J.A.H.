@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="Contact.css" media="screen">
     <link rel="stylesheet" href="Casa.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="jsForm.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="jsMethods.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.26.0, nicepage.com">
@@ -91,12 +92,12 @@
       </div>
       <div style="float: left;display: block;width: 150px;height: 100px;"></div>
       <div class="margins" style="float: left;width: 600px;height: auto; padding-top: 20px;max-width: 100%;margin:auto;border: 1px solid black">
-        <form action="/action_page.php">
+        <form action="#" onsubmit="form()">
           <div><h2 class="center">Zalantza bat baduzu</h2></div>
-          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-user icon3"></i></div><input type="text" id="fname" name="fname" placeholder="Izena"><br><br></div></div>
-          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-envelope icon3"></i></div><input type="text" id="lname" name="email" placeholder="Email"><br><br></div></div>
-          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-phone icon3"></i></div><input type="text" id="lname" name="phone" placeholder="Telefonoa"><br><br></div></div>
-          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-comment icon3"></i></div><textarea id="w3review" name="message" rows="4" cols="30" placeholder="Testua"></textarea><br><br></div></div>
+          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-user icon3"></i></div><input type="text" id="fname" name="fname" placeholder="Izena" required><br><br></div></div>
+          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-envelope icon3"></i></div><input type="email" id="lname" name="email" placeholder="Email" required><br><br></div></div>
+          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-phone icon3"></i></div><input type="number" id="lname" name="phone" placeholder="Telefonoa" required><br><br></div></div>
+          <div class="u-sheet"><div ><div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-comment icon3"></i></div><textarea id="w3review" name="message" rows="4" cols="30" placeholder="Testua" required></textarea><br><br></div></div>
           <div class="u-sheet"><div ><input type="submit" value="Bidali"></div></div><br><br>
         </form>
         </div>
