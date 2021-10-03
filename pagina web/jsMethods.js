@@ -50,6 +50,7 @@ if(window.location.href.endsWith("saskia.html")){
     }
 }
 
+//valida los formularios de pago
 function validateForms(){
     if(document.getElementById("divTxartela").style.display == "inline-block"){
         if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" && 
@@ -77,6 +78,7 @@ function validateForms(){
     }
 }
 
+//metodo para comprobar si hemos introducido el usuario correcto
 function erabiltzailea() {
     if (loginState == "Login") {
         //aqui se pillaria del prompt
@@ -119,6 +121,7 @@ function erabiltzailea() {
     }
 }
 
+//Enseña los dos formularios de pago
 function showAllForms(){
     if(loginState =="Logout"){
         if(document.getElementById("saskiItem").innerHTML!=""){
@@ -129,6 +132,7 @@ function showAllForms(){
     }
 }
 
+//Enseña solo el formulario de direccion
 function showAddressForm(){
     if(loginState =="Logout"){
         if(document.getElementById("saskiItem").innerHTML!=""){
@@ -139,6 +143,7 @@ function showAddressForm(){
     }
 }
 
+//Para cargar el carrito
 function initFoods() {
     if (kopuruak.length > 0) {
     }
