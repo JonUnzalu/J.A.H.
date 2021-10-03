@@ -150,7 +150,7 @@
           </div>
           <div class="form-group CVV">
             <label for="cvv">Posta kodea</label>
-            <input type="text" class="form-control" id="cvv">
+            <input type="text" class="form-control" id="pk" pattern="[0-9]{5}">
           </div>
         </form>
     </div>
@@ -168,11 +168,11 @@
         </div>
         <div class="form-group CVV">
           <label for="cvv">CVV</label>
-          <input type="text" class="form-control" id="cvv">
+          <input type="text" class="form-control" id="cvv" pattern="[0-9]{3}">
         </div>
         <div class="form-group" id="card-number-field">
           <label for="cardNumber">Txartel zenbakia</label>
-          <input type="text" class="form-control" id="cardNumber">
+          <input type="text" class="form-control" id="cardNumber" pattern="[0-9]{16}">
         </div>
         <div class="form-group" id="expiration-date">
           <label>Iraungitze data</label>
@@ -208,7 +208,7 @@
     </div>
   </div>
   <div class="form-group" id="pay-now">
-    <button type="submit" style="height: 60px; width: 250px;   font-size: 24px; background-color: #2ec4a5;" class="btn btn-default" id="confirm-purchase">Baieztatu</button>
+    <button type="submit" onclick="validateForms()" style="height: 60px; width: 250px;   font-size: 24px; background-color: #2ec4a5;" class="btn btn-default" id="confirm-purchase">Baieztatu</button>
   </div>
   </div>
   <br>

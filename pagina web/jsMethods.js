@@ -16,36 +16,64 @@ if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("
     kopuruak = [];
     kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-    if (window.location.href.endsWith("About.html") || window.location.href.endsWith("About.html")){
+    if (window.location.href.endsWith("About.html")){
         for (let i = 0; i < kopuruak.length; i++) {
             document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
         }
     }
-    else if(window.location.href.endsWith("saskia.html") || window.location.href.endsWith("saskia.html")){
+    else if(window.location.href.endsWith("saskia.html")){
         refreshCart();
     }
 }
 
 //si estamos en saskia
-if(window.location.href=="file:///C:/J.A.H/J.A.H/pagina%20web/saskia.html" || window.location.href=="http://192.168.73.13:8080/saskia.html"){
+if(window.location.href.endsWith("saskia.html")){
     if(loginState == "Logout"){ //si estamos logueados
         if(document.getElementById("saskiItem").innerHTML==""){
             document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
-            document.getElementById("divDatos").style.display = "none"
-            document.getElementById("parentDivForm").style.display = "none"
+            document.getElementById("divDatos").style.display = "none";
+            document.getElementById("divSaskia").style.display = "none";
+            document.getElementById("parentDivForm").style.display = "none";
         }
         else{
             document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
-            document.getElementById("parentDivForm").style.display = "none"
+            document.getElementById("parentDivForm").style.display = "none";
+            document.getElementById("divSaskia").style.display = "initial";
         }
-        document.getElementById("divSaskia").style.display = "initial"
-        document.getElementById("divDatos").style.display = "initial"
+        document.getElementById("divDatos").style.display = "initial";
     }
     else{                       //si no estamos logueados
         document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
         document.getElementById("divSaskia").style.display = "none"
         document.getElementById("divDatos").style.display = "none"
         document.getElementById("parentDivForm").style.display = "none"
+    }
+}
+
+function validateForms(){
+    if(document.getElementById("divTxartela").style.display == "inline-block"){
+        if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" && 
+            document.getElementById("owner").value != "" && document.getElementById("cvv").value !="" && 
+            document.getElementById("cardNumber").value !=""){
+                kopuruak = [];
+                sessionStorage.setItem("estadoKarrito", "");
+                window.location.href = "index.html";
+                alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
+        }
+        else{
+            alert("Mesedez bete atal guztiak");
+        }
+    }
+    else{
+        if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != ""){
+            kopuruak = [];
+            sessionStorage.setItem("estadoKarrito", "");
+            window.location.href = "index.html";
+            alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
+        }
+        else{
+            alert("Mesedez bete atal guztiak");
+        }
     }
 }
 
