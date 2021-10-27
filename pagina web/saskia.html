@@ -17,6 +17,7 @@
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="jsMethods.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <script class="u-script" type="text/javascript" src="jsDatepicker.js" defer=""></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <meta name="generator" content="Nicepage 3.26.0, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
@@ -176,28 +177,12 @@
         </div>
         <div class="form-group" id="expiration-date">
           <label>Iraungitze data</label>
-          <select>
-            <option value="01">Urtarrila</option>
-            <option value="02">Otsaila </option>
-            <option value="03">Martxoa</option>
-            <option value="04">Apirila</option>
-            <option value="05">Maiatza</option>
-            <option value="06">Ekaina</option>
-            <option value="07">Uztaila</option>
-            <option value="08">Abuztua</option>
-            <option value="09">Iraila</option>
-            <option value="10">Urria</option>
-            <option value="11">Azaroa</option>
-            <option value="12">Abendua</option>
-          </select>
-          <select>
-            <option value="16"> 2022</option>
-            <option value="17"> 2023</option>
-            <option value="18"> 2024</option>
-            <option value="19"> 2025</option>
-            <option value="20"> 2026</option>
-            <option value="21"> 2027</option>
-          </select>
+            <form>
+              <div>
+                <input type="date" id="egutegia" name="egutegia" required>
+                <span class="validity"></span>
+              </div>
+            </form>
         </div>
         <div class="form-group" id="credit_cards">
           <img src="images/visa.jpg" id="visa">
