@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="Casa.css" media="screen">
 
 
+	<script class="u-script" type="text/javascript" src="register.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -135,7 +136,7 @@
 			<br />
 			<input type="password" id="password">
 			<br />
-			<button type="submit">Hasi saioa</button>
+			<button type="submit" id="loginButton">Hasi saioa</button>
 			<br />
 			<a href="register.html">
 				<p class="small">Ez dekozu konturik? Sortu kontu berri bat!</p>
@@ -165,24 +166,5 @@
 	<section class="u-backlink u-clearfix u-grey-80">
 	</section>
 </body>
-
-<script>
-	$(document).ready(function () {
-		$('#logo').addClass('animated fadeInDown');
-		$("input:text:visible:first").focus();
-	});
-	$('#username').focus(function () {
-		$('label[for="username"]').addClass('selected');
-	});
-	$('#username').blur(function () {
-		$('label[for="username"]').removeClass('selected');
-	});
-	$('#password').focus(function () {
-		$('label[for="password"]').addClass('selected');
-	});
-	$('#password').blur(function () {
-		$('label[for="password"]').removeClass('selected');
-	});
-</script>
 
 </html>
