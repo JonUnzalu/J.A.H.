@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="u-clearfix u-section-3" id="sec-907d">
+  <div class="u-sheet">
+    <h1 style="text-align: center;">Banatzailea</h1>
+  </div><br><br>
+  <div class="margins">
+    <form action="/banatzailea/" method="POST"  style="margin: auto; border: 1px solid black; width: 300px;">{% csrf_token %}
+      <div>
+      </div>
+      <div class="u-sheet">
+        <div>
+          <div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-user icon3"></i>
+          </div><input type="text" id="nan" name="nan" placeholder="NaN" required><br><br>
+        </div>
+      </div>
+      <div class="u-sheet">
+        <div>
+          <div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-envelope icon3"></i>
+          </div><input type="text" id="izena" name="izena" placeholder="Izena" required><br><br>
+        </div>
+      </div>
+      <div class="u-sheet">
+        <div>
+          <div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-phone icon3"></i>
+          </div><input type="text" id="abizena" name="abizena" placeholder="Abizena" required><br><br>
+        </div>
+      </div>
+      <div class="u-sheet">
+        <div>
+          <div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-comment icon3"></i>
+          </div><input type="number" id="telefonoa" name="telefonoa" placeholder="Telefonoa" required><br><br>
+        </div>
+      </div>
+      <div class="u-sheet">
+        <div><input type="submit" value="Bidali"></div>
+      </div><br><br>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
