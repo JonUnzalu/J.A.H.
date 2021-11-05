@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'login.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'animateLogin.css' %}" media="screen">
+<script class="u-script" type="text/javascript" src="{% static 'registerlogin.js' %}" defer=""></script>
+
+<div class="container" style="margin-bottom:18%;">
+	<div class="top">
+		<h1 id="title" class="hidden"><span id="logo">HASI <span>SAIOA</span></span></h1>
+	</div>
+	<div class="login-box animated fadeInUp">
+		<form method="POST">{% csrf_token %}{{form.as_p}}
+		<div class="box-header">
+			<h2><b>Hasi saioa</b></h2>
+		</div>
+		<label for="username">Erabiltzailea</label>
+		<br />
+		<input type="text" id="username" name="username">
+		<br />
+		<label for="password">Pasahitza</label>
+		<br />
+		<input type="password" id="password" name="password">
+		<br />
+		<button type="submit">Hasi saioa</button>
+		<br />
+		<a href="{% url 'Register' %}">
+			<p class="small">Ez dekozu konturik? Sortu kontu berri bat!</p>
+		</a>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

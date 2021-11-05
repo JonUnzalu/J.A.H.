@@ -16,18 +16,18 @@ if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("
     kopuruak = [];
     kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-    if (window.location.href.endsWith("About.html")){
+    if (window.location.href.endsWith("/janaria/")){
         for (let i = 0; i < kopuruak.length; i++) {
             document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
         }
     }
-    else if(window.location.href.endsWith("saskia.html")){
+    else if(window.location.href.endsWith("/saskia/")){
         refreshCart();
     }
 }
 
 //si estamos en saskia
-if(window.location.href.endsWith("saskia.html")){
+if(window.location.href.endsWith("/saskia/")){
     if(loginState == "Logout"){ //si estamos logueados
         if(document.getElementById("saskiItem").innerHTML==""){
             document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
@@ -58,7 +58,7 @@ function validateForms(){
             document.getElementById("cardNumber").value !=""){
                 kopuruak = [];
                 sessionStorage.setItem("estadoKarrito", "");
-                window.location.href = "index.html";
+                window.location.href = "/index/";
                 alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
         }
         else{
@@ -69,7 +69,7 @@ function validateForms(){
         if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != ""){
             kopuruak = [];
             sessionStorage.setItem("estadoKarrito", "");
-            window.location.href = "index.html";
+            window.location.href = "/index/";
             alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
         }
         else{
@@ -77,11 +77,6 @@ function validateForms(){
         }
     }
 }
-
-$("#loginButton").click(function(){
-    var us = $("#username").val()
-    var ps = $("#password").val()
-})
 
 //metodo para comprobar si hemos introducido el usuario correcto
 function erabiltzailea() {
@@ -223,6 +218,7 @@ function beherapenak() {
         produktuizena: "",
         produktukantitatea: "",
         produktuprezioa: "",
+        
         }
         
         erosketa.bezeroizena= prompt("Nola deitzen zara?")
@@ -256,5 +252,5 @@ function saskia() {
         erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
         var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
            
-        alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
 }
