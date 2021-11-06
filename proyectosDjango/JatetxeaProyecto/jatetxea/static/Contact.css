@@ -15,7 +15,10 @@
   content: '✓';
   padding-left: 5px;
 }
-
+.imagenfondo {
+  background-image: url("/static/images/contactofondo.jpg");
+  background-size: cover;
+}
 .parentDivForm {
   margin: 1rem;
   padding: 2rem 2rem;

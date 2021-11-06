@@ -15,7 +15,7 @@
   </div>
   <div style="float: left;display: block;width: 150px;height: 100px;"></div>
   <div class="margins"
-    style="float: left;width: 600px;height: auto; padding-top: 20px;max-width: 100%;margin:auto;border: 1px solid black">
+    style="float: left;width: 600px;height: auto; padding-top: 20px;max-width: 100%;margin:auto;border: 1px solid black; margin-bottom: 5%;">
     <form method="POST">{% csrf_token %}{{form.as_p}}
       <div>
         <h2 class="center">Zalantza bat baduzu</h2>
@@ -41,7 +41,7 @@
       <div class="u-sheet">
         <div>
           <div style="width: 30px;height: auto; position: relative;float: left;"><i class="fa fa-comment icon3"></i>
-          </div><textarea id="w3review" name="message" rows="4" cols="30" placeholder="Testua"
+          </div><textarea style="resize: none;" id="w3review" name="message" rows="8" cols="45" placeholder="Testua"
             required></textarea><br><br>
         </div>
       </div>
