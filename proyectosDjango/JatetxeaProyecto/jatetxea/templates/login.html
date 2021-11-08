@@ -8,10 +8,13 @@
 <link rel="stylesheet" href="{% static 'animateLogin.css' %}" media="screen">
 <script class="u-script" type="text/javascript" src="{% static 'registerlogin.js' %}" defer=""></script>
 
-<div class="container" style="margin-bottom:18%;">
+<div class="container" style="margin-bottom:300px;">
 	<div class="top">
 		<h1 id="title" class="hidden"><span id="logo">HASI <span>SAIOA</span></span></h1>
 	</div>
+	{% if user.is_authenticated %}
+		<h1>Puto anormal que haces escribiendo el link</h1>
+	{% else %}
 	<div class="login-box animated fadeInUp">
 		<form method="POST">{% csrf_token %}{{form.as_p}}
 		<div class="box-header">
@@ -31,7 +34,8 @@
 			<p class="small">Ez dekozu konturik? Sortu kontu berri bat!</p>
 		</a>
 		</form>
-	</div>
+		</div>
+	{% endif %}
 </div>
 
 {% endblock %}
