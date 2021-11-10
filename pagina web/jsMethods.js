@@ -78,6 +78,11 @@ function validateForms(){
     }
 }
 
+$("#loginButton").click(function(){
+    var us = $("#username").val()
+    var ps = $("#password").val()
+})
+
 //metodo para comprobar si hemos introducido el usuario correcto
 function erabiltzailea() {
     if (loginState == "Login") {
@@ -218,7 +223,6 @@ function beherapenak() {
         produktuizena: "",
         produktukantitatea: "",
         produktuprezioa: "",
-        
         }
         
         erosketa.bezeroizena= prompt("Nola deitzen zara?")
@@ -252,5 +256,5 @@ function saskia() {
         erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
         var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
            
-           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
+        alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
 }
