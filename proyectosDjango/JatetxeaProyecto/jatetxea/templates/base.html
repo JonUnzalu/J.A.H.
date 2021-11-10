@@ -95,8 +95,8 @@
                 href="{% url 'Banatzailea' %}" style="padding: 10px 20px;">Banatzailea</a>
             </li>
             <li class="u-nav-item"><a
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout1" onclick="onTabClosing()"
-                href="" style="padding: 10px 20px;">Logout</a>
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout1"
+                href="" method="post" style="padding: 10px 20px;">Logout</a>
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link " href="{% url 'Saskia' %}"><svg
                   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
@@ -107,8 +107,8 @@
             <strong>Kaixo {{ user.username }}!</strong>
             {% elif user.is_authenticated %}
             <li class="u-nav-item"><a
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout2" onclick="onTabClosing()"
-                href="" style="padding: 10px 20px;">Logout</a>
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout2"
+                href="" method="post" style="padding: 10px 20px;">Logout</a>
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link " href="{% url 'Saskia' %}"><svg
                   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
@@ -155,7 +155,7 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Banatzailea' %}"
                     style="color: white;">Banatzailea</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" style="color: rgb(255, 255, 255);" onclick="onTabClosing()"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" style="color: rgb(255, 255, 255);"
                     href="{% url 'Logout' %}">Logout
                   </a>
                 </li>

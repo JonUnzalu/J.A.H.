@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from jatetxea.models import Janariak, Janarimota, Repartidor, Saskia, Eskaera
 from datetime import date, datetime
 from django.contrib.auth.hashers import make_password
+import json
 
 # Create your views here.
 
@@ -34,7 +35,6 @@ def categoriaString(request, categoria):
     return HttpResponseRedirect("/janaria/")
 
 def kontaktua(request):
-
     if request.method=="POST":
 
         email=EmailMessage(
@@ -109,23 +109,76 @@ def user_login(request):
         password=request.POST["password"]
 
         user= authenticate(request,username=username, password=password)
+
         if user is not None:
             login(request, user)
+
+            if Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0) is not None:
+                eskaera=Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0)
+                if eskaera.count() > 0:
+                    idEskaera = eskaera[0].id
+                    saskiItems = Saskia.objects.filter(codEskaera=idEskaera)
+                    #if saskiItems.count() >0
             return HttpResponseRedirect('/')
         else:
-            return render(request, 'login.html')
+            return render(request, 'login.html')   
 
     return render(request, "login.html",)
+
+        #if user is not None:
+        #login(request, user)
+        #eskaera=Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0)
+    #if eskaera.count() > 0:
+    #idEskaera = eskaera[0].id
+    #saskiItems = Saskia.objects.filter(codEskaera=idEskaera)
+
+    #return render(request, '', {"janariak":saskiItems})
+    #return HttpResponseRedirect("/")
+    #else:
+    #return render(request, 'login.html')
 
 def user_logout(request):
     kopuruak = request.POST.get("kopuruakuwu")
     bezeroErabiltzailea=request.user.username
-    eskaeraData = date.today()
-    baieztatua = 0
-    nanBanatzailea = "123456"
-    prezioTotala = 0
-    eskaera=Eskaera(None,bezeroErabiltzailea ,eskaeraData ,baieztatua , prezioTotala, nanBanatzailea)
-    eskaera.save()
-        
+
+    if kopuruak != "[]":
+        janarienLista = json.loads(kopuruak)
+    
+        eskaeraData = date.today()
+        baieztatua = 0
+        nanBanatzailea = "123456"
+        prezioTotala = 0
+
+
+        if Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0) is not None:
+            eskaeraBusca=Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0)
+            if eskaeraBusca.count() > 0:
+                idEskaera = eskaeraBusca[0].id
+                Saskia.objects.filter(codEskaera=idEskaera).delete()
+                eskaeraBusca.delete()
+
+        eskaera=Eskaera(None,bezeroErabiltzailea,eskaeraData ,baieztatua , prezioTotala, nanBanatzailea)
+        eskaera.save()     
+    
+        idMetido=eskaera.id
+        haGuardadoJanaris = 0
+    
+        if janarienLista is not None:
+            for i in range(len(janarienLista)):
+                saskiItem = Saskia(None, janarienLista[i]['idJanari'],idMetido, janarienLista[i]['kopurua'])
+                saskiItem.save()
+                haGuardadoJanaris = 1
+
+            if(haGuardadoJanaris==0):
+                eskaera.delete()
+
+    else:
+        eskaeraBusca=Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0)
+        if eskaeraBusca is not None:
+            if eskaeraBusca.count() > 0:
+                idEskaera = eskaeraBusca[0].id
+                Saskia.objects.filter(codEskaera=idEskaera).delete()
+                eskaeraBusca.delete()
+
     logout(request)
     return HttpResponseRedirect("/login/")

@@ -58,29 +58,50 @@ function erabiltzailea() {
     }
 }
 
-function onTabClosing() {
-    
-    //sessionStorage.clear();
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
 
 $(document).ready(function() {
     $("#logout1,#logout2").click(function() {
-        var kopuruakuwu = sessionStorage.getItem("estadoKarrito");
+        var csrftoken = getCookie('csrftoken')
+        kopuruak = [];
+        kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
+
+        for (let i=0;i<kopuruak.length;i++){
+            if(kopuruak[i].kopurua == 0){
+                kopuruak.splice(i);
+            }
+        }
+
+        var kopuruakuwu = JSON.stringify(kopuruak)
 
         $.ajax({
-            url: "/Logout/",
+            url: "/logout/",
             type: "POST",
             dataType: "json",
             data: {
                 kopuruakuwu: kopuruakuwu,
-                csrfmiddlewaretoken: '{{ csrf_token }}'
+                csrfmiddlewaretoken: csrftoken,
                 },
             success : function(json) {
-                
             },
             error : function(xhr,errmsg,err) {
                 alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
             }
         });
+        sessionStorage.clear();
     });
 });
