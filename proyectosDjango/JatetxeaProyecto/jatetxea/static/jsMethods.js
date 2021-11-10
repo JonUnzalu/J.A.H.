@@ -1,82 +1,19 @@
-var loginState = "Login";
+var loginState=false;
+function changeLoginState(logState){
+    loginState = logState;
+    sessionStorage.setItem("logState", logState);
+}
+
+
 if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logState") == "true") {
     loginState = "Logout";
-    document.getElementById("loginState").innerHTML = loginState;
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
 } else {
     loginState = "Login";
     sessionStorage.setItem("logState", "false");
-    document.getElementById("loginState").innerHTML = loginState;
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
-
-var kopuruak = new Array()
-if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
-    kopuruak = [];
-    kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
-
-    if (window.location.href.endsWith("/janaria/")){
-        for (let i = 0; i < kopuruak.length; i++) {
-            document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
-        }
-    }
-    else if(window.location.href.endsWith("/saskia/")){
-        refreshCart();
-    }
-}
-
-//si estamos en saskia
-if(window.location.href.endsWith("/saskia/")){
-    if(loginState == "Logout"){ //si estamos logueados
-        if(document.getElementById("saskiItem").innerHTML==""){
-            document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
-            document.getElementById("divDatos").style.display = "none";
-            document.getElementById("divSaskia").style.display = "none";
-            document.getElementById("parentDivForm").style.display = "none";
-        }
-        else{
-            document.getElementById("ordainketa").innerHTML = "Aukeratu ordainketa metodoa";
-            document.getElementById("parentDivForm").style.display = "none";
-            document.getElementById("divSaskia").style.display = "initial";
-        }
-        document.getElementById("divDatos").style.display = "initial";
-    }
-    else{                       //si no estamos logueados
-        document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
-        document.getElementById("divSaskia").style.display = "none"
-        document.getElementById("divDatos").style.display = "none"
-        document.getElementById("parentDivForm").style.display = "none"
-    }
-}
-
-//valida los formularios de pago
-function validateForms(){
-    if(document.getElementById("divTxartela").style.display == "inline-block"){
-        if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" && 
-            document.getElementById("owner").value != "" && document.getElementById("cvv").value !="" && 
-            document.getElementById("cardNumber").value !=""){
-                kopuruak = [];
-                sessionStorage.setItem("estadoKarrito", "");
-                window.location.href = "/index/";
-                alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
-        }
-        else{
-            alert("Mesedez bete atal guztiak");
-        }
-    }
-    else{
-        if(document.getElementById("pk").value != "" && document.getElementById("helbidea").value != ""){
-            kopuruak = [];
-            sessionStorage.setItem("estadoKarrito", "");
-            window.location.href = "/index/";
-            alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
-        }
-        else{
-            alert("Mesedez bete atal guztiak");
-        }
-    }
-}
 
 //metodo para comprobar si hemos introducido el usuario correcto
 function erabiltzailea() {
@@ -121,136 +58,50 @@ function erabiltzailea() {
     }
 }
 
-//Enseña los dos formularios de pago
-function showAllForms(){
-    if(loginState =="Logout"){
-        if(document.getElementById("saskiItem").innerHTML!=""){
-            document.getElementById("parentDivForm").style.display = "block"
-            document.getElementById("divTxartela").style.display = "inline-block"
-            document.getElementById("divHelbidea").style.display = "inline-block"
-        }
-    }
-}
-
-//Enseña solo el formulario de direccion
-function showAddressForm(){
-    if(loginState =="Logout"){
-        if(document.getElementById("saskiItem").innerHTML!=""){
-            document.getElementById("parentDivForm").style.display = "block"
-            document.getElementById("divHelbidea").style.display = "inline-block"
-            document.getElementById("divTxartela").style.display = "none"
-        }
-    }
-}
-
-//Para cargar el carrito
-function initFoods() {
-    if (kopuruak.length > 0) {
-    }
-    else {
-        for (let i = 0; i < 14; i++) {
-            const kopuruxJanari = {
-                kopurua: 0,
-                kopuruMax: 20,
-                prezioa: document.getElementById("prezioa"+i).innerHTML,
-                idJanari: i,
-                desJanari: document.getElementById("janari"+i).innerHTML
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
-            kopuruak.push(kopuruxJanari)
-            document.getElementById("kopurua" + i).innerHTML = kopuruak[i].kopurua;
         }
-        sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
     }
+    return cookieValue;
 }
 
+$(document).ready(function() {
+    $("#logout1,#logout2").click(function() {
+        var csrftoken = getCookie('csrftoken')
+        kopuruak = [];
+        kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-function addFood(codJanaria) {
-    if (kopuruak[codJanaria].kopurua < kopuruak[codJanaria].kopuruMax) {
-        kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua + 1;
-        document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
-
-        sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
-    }
-}
-
-function subtractFood(codJanaria) {
-    if (kopuruak[codJanaria].kopurua > 0) {
-        kopuruak[codJanaria].kopurua = kopuruak[codJanaria].kopurua - 1;
-        document.getElementById("kopurua" + codJanaria).innerHTML = kopuruak[codJanaria].kopurua;
-
-        sessionStorage.setItem("estadoKarrito", JSON.stringify(kopuruak));
-    }
-}
-
-function refreshCart(){
-    let e =0;
-    let prezioTotala = 0;
-    let prezioLinea = 0;
-    for(let i=0; i<kopuruak.length;i++){
-        if(kopuruak[i].kopurua>0){
-            var uwu = kopuruak[i].prezioa;
-
-            if(e>0){
-                prezioLinea = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua)
-                prezioTotala = prezioTotala + prezioLinea;
-                document.getElementById("saskiItem").innerHTML = document.getElementById("saskiItem").innerHTML + "<li>" + prezioLinea.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+        for (let i=0;i<kopuruak.length;i++){
+            if(kopuruak[i].kopurua == 0){
+                kopuruak.splice(i);
             }
-            else{
-                prezioTotala = parseFloat(uwu.replace('€','')) * parseInt(kopuruak[i].kopurua);
-                document.getElementById("saskiItem").innerHTML = "<li>" + prezioTotala.toFixed(2) + "€..........................." + kopuruak[i].desJanari + " / x" + kopuruak[i].kopurua + "</li>";
+        }
+
+        var kopuruakuwu = JSON.stringify(kopuruak)
+
+        $.ajax({
+            url: "/logout/",
+            type: "POST",
+            dataType: "json",
+            data: {
+                kopuruakuwu: kopuruakuwu,
+                csrfmiddlewaretoken: csrftoken,
+                },
+            success : function(json) {
+            },
+            error : function(xhr,errmsg,err) {
+                alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
             }
-            e++;
-        }
-    }
-    if(document.getElementById("saskiItem").innerHTML!=""){
-        document.getElementById("prezioaTotala").innerHTML = "Prezioa guztira: " + prezioTotala.toFixed(2) + "€"
-    }
-}
-
-function onTabClosing() {
-    sessionStorage.clear();
-}
-
-
-function beherapenak() {
-    var erosketa={
-        bezeroizena: "",
-        produktuizena: "",
-        produktukantitatea: "",
-        produktuprezioa: "",
-        
-        }
-        
-        erosketa.bezeroizena= prompt("Nola deitzen zara?")
-        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
-        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
-        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
-        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
-        var beherapena = guztira - 5
-        if (guztira>20) {
-            alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€\n" + "Beherapenarekin:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ beherapena+"€")         
-        }
-           else{
-           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa guztira:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
-           }
-
-    
-}
-
-function saskia() {
-    var erosketa={
-        bezeroizena: "",
-        produktuizena: "",
-        produktukantitatea: "",
-        produktuprezioa: "",
-        
-        }
-        
-        erosketa.bezeroizena= prompt("Nola deitzen zara?")
-        erosketa.produktuizena= prompt("Zer erosi nahi duzu?")
-        erosketa.produktukantitatea= prompt("Zenbat erosi nahi dituzu?")
-        erosketa.produktuprezioa= prompt("Zer preziotara erosi nahi duzu?")
-        var guztira= erosketa.produktukantitatea*erosketa.produktuprezioa
-           
-           alert("Saskia\n"+ erosketa.bezeroizena+"ren erosketa:\n"+erosketa.produktuizena+":"+erosketa.produktukantitatea+"x"+erosketa.produktuprezioa+"= "+ guztira+"€")   
-}
+        });
+        sessionStorage.clear();
+    });
+});
