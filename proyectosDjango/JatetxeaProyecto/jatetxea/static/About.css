@@ -32,6 +32,11 @@
   background-position: 50% 50%;
 }
 
+.u-section-4 {
+  background-image: url("/static/images/patatasBg.jpg");
+  background-position: 50% 50%;
+}
+
 .u-food-image{
 display: flex;
 justify-content: center;

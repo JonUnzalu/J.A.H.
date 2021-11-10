@@ -3,19 +3,19 @@
 <html style="font-size: 16px;">
 
 <head>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    .carousel-inner > .item > img,
-    .carousel-inner > .item > a > img {
+    .carousel-inner>.item>img,
+    .carousel-inner>.item>a>img {
       width: 70%;
       margin: auto;
     }
-    </style>
+  </style>
 
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
@@ -47,7 +47,11 @@
   <meta property="og:type" content="website">
 </head>
 
-<body onload="initFoods()" data-home-page="Casa.html" data-home-page-title="Casa" class="u-body">
+  {% if user.is_authenticated %}
+  <body onload="changeLoginState(true)" data-home-page="Casa.html" data-home-page-title="Casa" class="u-body">
+  {% else %}
+  <body onload="changeLoginState(false)" data-home-page="Casa.html" data-home-page-title="Casa" class="u-body">
+  {% endif %}
   <header class="u-clearfix u-header u-header" id="sec-28c7">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="{%url 'Index' %}" class="u-image u-logo u-image-1">
@@ -85,35 +89,83 @@
                 class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                 href="{% url 'Kontaktua' %}" style="padding: 10px 20px;">Kontaktoa</a>
             </li>
-            <li class="u-nav-item"><a id="loginState"
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'Login' %}"
-                style="padding: 10px 20px;"></a>
+
+            {% if user.is_superuser %}
+            <li class="u-nav-item"><a
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                href="{% url 'Banatzailea' %}" style="padding: 10px 20px;">Banatzailea</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link " href="/saskia/"><svg
+            <li class="u-nav-item"><a
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout1"
+                href="" method="post" style="padding: 10px 20px;">Logout</a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link " href="{% url 'Saskia' %}"><svg
                   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
                   viewBox="0 0 16 16">
                   <path
                     d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                 </svg></a></li>
+            <strong>Kaixo {{ user.username }}!</strong>
+            {% elif user.is_authenticated %}
+            <li class="u-nav-item"><a
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout2"
+                href="" method="post" style="padding: 10px 20px;">Logout</a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link " href="{% url 'Saskia' %}"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg></a></li>
+            <strong>Kaixo {{ user.username }}!</strong>
+            {% else %}
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'Login' %}">Login
+              </a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link " href="{% url 'Saskia' %}"><svg
+              xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
+              viewBox="0 0 16 16">
+              <path
+                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg></a></li>
+            <li class="u-nav-item">
+
+              <a style="color: blueviolet;" href="{% url 'Register' %}">Ez zaude erregistratuta</a>
+
+            </li>
+            {% endif %}
+
+
           </ul>
+
         </div>
         <div class="u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/index/"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Index' %}"
                     style="color: white;">Menua</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/janaria/"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Janaria' %}"
                     style="color: white;">Janaria</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/kontaktua/"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Kontaktua' %}"
                     style="color: white;">Kontaktoa</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Login' %}" style="color: rgb(255, 255, 255);">Login                  
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Banatzailea' %}"
+                    style="color: white;">Banatzailea</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" style="color: rgb(255, 255, 255);"
+                    href="{% url 'Logout' %}">Logout
                   </a>
                 </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link " href="/saskia/"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg></a></li>
               </ul>
             </div>
           </div>
@@ -121,26 +173,27 @@
         </div>
       </nav>
     </div>
+
   </header>
 
-  <!-- Aqui metemos lo que se cambia --> 
+      <!-- Aqui metemos lo que se cambia -->
 
-  {% block content %}
-  {% endblock %}
+      {% block content %}
+      {% endblock %}
 
-  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-85f5">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-small-text u-text u-text-variant u-text-1"><i class="fa fa-phone icon2"></i> Telefonoz ere eska
-        dezakezu: 91 1933933 / 902 411 114 </br></br> <a href="https://www.instagram.com/jon_unzalu/?hl=es"
-          target="blank"><i class="fa fa-instagram icon iconcolor"></i></a><a href="#"><i
-            class="fa fa-youtube icon iconcolor"></i></a><a href="https://twitter.com/jon_unzalu" target="blank"><i
-            class="fa fa-twitter icon iconcolor"></i><a href="#"><i class="fa fa-twitch icon iconcolor"></i></a><a
-            href="https://es-es.facebook.com/pg/Jon-Unzalu-370788773340413/photos/" target="blank"><i
-              class="fa fa-facebook icon iconcolor"></i></a></p>
-    </div>
-  </footer>
-  <section class="u-backlink u-clearfix u-grey-80">
-  </section>
-</body>
+      <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-85f5">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <p class="u-small-text u-text u-text-variant u-text-1"><i class="fa fa-phone icon2"></i> Telefonoz ere eska
+            dezakezu: 91 1933933 / 902 411 114 </br></br> <a href="https://www.instagram.com/jon_unzalu/?hl=es"
+              target="blank"><i class="fa fa-instagram icon iconcolor"></i></a><a href="#"><i
+                class="fa fa-youtube icon iconcolor"></i></a><a href="https://twitter.com/jon_unzalu" target="blank"><i
+                class="fa fa-twitter icon iconcolor"></i><a href="#"><i class="fa fa-twitch icon iconcolor"></i></a><a
+                href="https://es-es.facebook.com/pg/Jon-Unzalu-370788773340413/photos/" target="blank"><i
+                  class="fa fa-facebook icon iconcolor"></i></a></p>
+        </div>
+      </footer>
+      <section class="u-backlink u-clearfix u-grey-80">
+      </section>
+    </body>
 
 </html>
