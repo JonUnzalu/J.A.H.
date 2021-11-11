@@ -58,6 +58,7 @@ function erabiltzailea() {
     }
 }
 
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -106,13 +107,43 @@ $(document).ready(function() {
         sessionStorage.clear();
     });
 
+    var janariakCarrito = new Array()
 
-    kopuruak = [];
-    $(".sesioSaskiItems").each(function(){
-        var idYKopuru = $(this).innerHTML();
-        var idJanari = idYKopuru.split("|")[0]
-        var kopuru = idYKopuru.split("|")[1]
+    var cantidadSaskiItems = document.querySelectorAll('.sesioSaskiItems').length
+    if(cantidadSaskiItems>0){
         
-        sessionStorage.getItem("estadoKarrito");
-    });
+        var cantidadComidas = document.querySelectorAll('.kopuruak').length;
+        if(cantidadComidas>0){
+            if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
+            }
+            else{
+                if (cantidadComidas.length > 0) {
+                    for (let i = 1; i < cantidadComidas+1; i++) {
+                        const kopuruxJanari = {
+                            kopurua: 0,
+                            kopuruMax: 20,
+                            prezioa: 0.0,
+                            idJanari: i,
+                            desJanari: ""
+                        }
+                        janariakCarrito.push(kopuruxJanari)
+                    }
+    
+                    $(".sesioSaskiItems").each(function() {
+                        var itemInfo = $(this).innerHTML();
+    
+                        var idJanari = idYKopuru.split("|")[0]
+                        var kopuru = idYKopuru.split("|")[1]
+                        
+                    });
+
+            
+            
+                    sessionStorage.setItem("estadoKarrito", JSON.stringify(janariakCarrito));
+                }
+            }
+        
+        }     
+    }
+
 }); 
