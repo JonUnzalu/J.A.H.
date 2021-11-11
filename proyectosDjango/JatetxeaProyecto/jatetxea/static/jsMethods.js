@@ -80,9 +80,11 @@ $(document).ready(function() {
         kopuruak = [];
         kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-        for (let i=0;i<kopuruak.length;i++){
-            if(kopuruak[i].kopurua == 0){
-                kopuruak.splice(i);
+        if (kopuruak !== null){
+            for (let i=0;i<kopuruak.length;i++){
+                if(kopuruak[i].kopurua == 0){
+                    kopuruak.splice(i);
+                }
             }
         }
 
@@ -99,9 +101,18 @@ $(document).ready(function() {
             success : function(json) {
             },
             error : function(xhr,errmsg,err) {
-                alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
             }
         });
         sessionStorage.clear();
     });
-});
+
+
+    kopuruak = [];
+    $(".sesioSaskiItems").each(function(){
+        var idYKopuru = $(this).innerHTML();
+        var idJanari = idYKopuru.split("|")[0]
+        var kopuru = idYKopuru.split("|")[1]
+        
+        sessionStorage.getItem("estadoKarrito");
+    });
+}); 
