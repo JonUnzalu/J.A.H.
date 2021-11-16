@@ -6,11 +6,13 @@
 
 
 {% for saskiItem in saskiItems %}
+<!--Comidas del carrito-->
 <p style="display: none;" class="sesioSaskiItems">{{saskiItem.idJanaria}}|{{saskiItem.kopurua}}</p>
 {% endfor %}
 
 {% for janaria in janariak %}
-<p style="display: none;" class="kopuruak">{{janaria.janaria}}|{{janaria.izena}}|{{janaria.deskripzioa}}|{{janaria.prezioa}}</p>
+<!--Todas las comidas-->
+<p style="display: none;" class="kopuruak">{{janaria.id}}|{{janaria.izena}}|{{janaria.prezioa}}</p>
 {% endfor %}
 
 <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="256"

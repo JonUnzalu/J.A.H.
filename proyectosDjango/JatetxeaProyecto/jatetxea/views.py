@@ -184,7 +184,7 @@ def user_logout(request):
                 eskaeraBusca.delete()
 
     logout(request)
-    return HttpResponseRedirect("/login/")
+    return render(request, "login.html",)
 
 
 
