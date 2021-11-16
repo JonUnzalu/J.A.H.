@@ -14,50 +14,6 @@ if (sessionStorage.getItem("logState") !== null && sessionStorage.getItem("logSt
     document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
 }
 
-
-//metodo para comprobar si hemos introducido el usuario correcto
-function erabiltzailea() {
-    if (loginState == "Login") {
-        //aqui se pillaria del prompt
-        var gureErabiltzailea = {
-            izena: "",
-            pasahitza: ""
-        }
-
-        var erabil1 = {
-            izena: "admin",
-            pasahitza: "admin"
-        }
-        //apuntamos b -> true:ok / false:no
-
-        const erabiltzaileak = new Array(erabil1);
-
-        gureErabiltzailea.izena = prompt("Sartu erabiltzaile izena: ")
-
-        if (gureErabiltzailea.izena != "" && !(gureErabiltzailea.izena == null)) {
-            gureErabiltzailea.pasahitza = prompt("Sartu pasahitza: ")
-        } else {
-            alert("Ez zera erabiltzailea.")
-            return;
-        }
-
-        if ((erabiltzaileak[0].izena == gureErabiltzailea.izena) && (erabiltzaileak[0].pasahitza == gureErabiltzailea.pasahitza)) {
-            alert("Erabiltzailea zera.")
-            sessionStorage.setItem("logState", "true");
-            document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "initial");
-        }
-        else {
-            alert("Ez zera erabiltzailea.")
-        }
-    }
-    else{
-        sessionStorage.clear();
-        loginState = "Login";
-        document.getElementById("loginState").innerHTML = loginState;
-        document.querySelectorAll(".kopuruak").forEach(a=>a.style.display = "none");
-    }
-}
-
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -80,9 +36,12 @@ $(document).ready(function() {
         kopuruak = [];
         kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
 
-        for (let i=0;i<kopuruak.length;i++){
-            if(kopuruak[i].kopurua == 0){
-                kopuruak.splice(i);
+        if (kopuruak !== null){
+            for (let i=0;i<kopuruak.length;i++){
+                if(kopuruak[i].kopurua == 0){
+                    kopuruak.splice(i, 1);
+                    i--;
+                }
             }
         }
 
@@ -99,9 +58,57 @@ $(document).ready(function() {
             success : function(json) {
             },
             error : function(xhr,errmsg,err) {
-                alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
             }
         });
         sessionStorage.clear();
     });
-});
+
+    var janariakCarrito = new Array()
+
+    var cantidadSaskiItems = document.querySelectorAll('.sesioSaskiItems').length
+    if(cantidadSaskiItems>0){
+        
+        var cantidadComidas = document.querySelectorAll('.kopuruak').length;
+        if(cantidadComidas>0){
+
+            /**for (let i = 1; i < cantidadComidas+1; i++) {
+                const kopuruxJanari = {
+                    kopurua: 0,
+                    kopuruMax: 20,
+                    prezioa: 0.0,
+                    idJanari: i,
+                    desJanari: ""
+                }
+                janariakCarrito.push(kopuruxJanari)
+            }**/
+            
+            $(".kopuruak").each(function() {
+                var itemInfo = $(this).html();  
+                var idJanaria = parseInt(itemInfo.split("|")[0]);
+                var izena = itemInfo.split("|")[1];
+                var prezio = itemInfo.split("|")[2] + "€";             
+            
+                const kopuruxJanari = {
+                    kopurua: 0,
+                    kopuruMax: 20,
+                    prezioa: prezio,
+                    idJanari: idJanaria,
+                    desJanari: izena
+                }
+                janariakCarrito.push(kopuruxJanari)
+
+            });
+
+            $(".sesioSaskiItems").each(function() {
+                var itemInfo = $(this).html();  
+                var idJanari = parseInt(itemInfo.split("|")[0]);
+                var kopuru = parseInt(itemInfo.split("|")[1]);             
+            
+                janariakCarrito[idJanari-1].kopurua = kopuru
+            });
+           
+            sessionStorage.setItem("estadoKarrito", JSON.stringify(janariakCarrito));  
+        }     
+    }
+
+}); 
