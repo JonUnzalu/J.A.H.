@@ -104,6 +104,8 @@ def register(request):
     return render(request, "register.html")
 
 def user_login(request):
+    saskiItemArray = []
+
     if request.method=="POST":
         username=request.POST["username"]
         password=request.POST["password"]
@@ -115,27 +117,28 @@ def user_login(request):
 
             if Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0) is not None:
                 eskaera=Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0)
+
                 if eskaera.count() > 0:
                     idEskaera = eskaera[0].id
                     saskiItems = Saskia.objects.filter(codEskaera=idEskaera)
-                    #if saskiItems.count() >0
-            return HttpResponseRedirect('/')
+                    if saskiItems.count() >0:
+                        for i in range(len(saskiItems)):
+                            saskiItem = SaskiItem()
+                            saskiItem.idJanaria = saskiItems[i].idJanaria
+                            saskiItem.kopurua = saskiItems[i].kopurua
+
+                            saskiItemArray.append(saskiItem)
+
+                        janariak=Janariak.objects.all()
+                        janarimotak=Janarimota.objects.all()
+                        return render(request, "index.html", {"saskiItems":saskiItemArray, "janariak":janariak, "janarimotak":janarimotak})
+
+            return render(request, "index.html",)
+
         else:
             return render(request, 'login.html')   
 
     return render(request, "login.html",)
-
-        #if user is not None:
-        #login(request, user)
-        #eskaera=Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0)
-    #if eskaera.count() > 0:
-    #idEskaera = eskaera[0].id
-    #saskiItems = Saskia.objects.filter(codEskaera=idEskaera)
-
-    #return render(request, '', {"janariak":saskiItems})
-    #return HttpResponseRedirect("/")
-    #else:
-    #return render(request, 'login.html')
 
 def user_logout(request):
     kopuruak = request.POST.get("kopuruakuwu")
@@ -181,4 +184,11 @@ def user_logout(request):
                 eskaeraBusca.delete()
 
     logout(request)
-    return HttpResponseRedirect("/login/")
+    return render(request, "login.html",)
+
+
+
+class SaskiItem():
+    def __init__(self):   # constructor function using self
+        self.idJanaria = None  # variable using self.
+        self.kopurua = None  # variable using self
