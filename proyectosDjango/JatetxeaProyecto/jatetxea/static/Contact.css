@@ -1,17 +1,17 @@
-#egutegia:invalid {
+input:invalid {
   border: 2px solid red;
 }
-#egutegia:valid {
+input:valid {
   border: 2px solid green;
 }
 
 
-#egutegia:invalid+span:after {
+input:invalid+span:after {
   content: '✖';
   padding-left: 5px;
 }
 
-#egutegia:valid+span:after {
+input:valid+span:after {
   content: '✓';
   padding-left: 5px;
 }
