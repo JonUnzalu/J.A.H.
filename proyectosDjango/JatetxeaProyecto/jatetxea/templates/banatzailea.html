@@ -4,14 +4,17 @@
 
 {% block content %}
 
-<section class="u-clearfix u-section-3" id="sec-907d">
+<section class="u-clearfix u-section-3 colorfondo" id="sec-907d" >
   <div class="u-sheet">
-    <h1 style="text-align: center;">Banatzailea</h1>
-  </div>
-  <div class="margins">
+  <h1 style="text-align: center; color: black;">BANATZAILEA</h1>
+</div>
+    <div class="iframe margins row">
+      <img src="{% static 'images/repartidor.png' %}">
+      </div>
+  <div class="margins" style="float: left;width: 600px;height: auto; padding-top: 40px;max-width: 100%;margin:auto; margin-top: 4%;">
     <form action="/banatzailea/" method="POST"  style="margin: auto;  width: 300px;">{% csrf_token %}
       <fieldset>
-      <legend>Banatzailea</legend>
+      <legend  style="text-align: center;">Banatzaile datuak</legend>
       <div>
       </div>
       <div class="u-sheet">
