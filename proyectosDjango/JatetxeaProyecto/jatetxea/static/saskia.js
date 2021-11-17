@@ -1,10 +1,7 @@
 
-if (sessionStorage.getItem("estadoKarrito") !== null && sessionStorage.getItem("estadoKarrito").length > 0) {
+if (localStorage.getItem("estadoKarrito") !== null && localStorage.getItem("estadoKarrito").length > 0) {
     refreshCart();
-}
 
-
-if (sessionStorage.getItem("logState") == "true") { //si estamos logueados
     if (document.getElementById("saskiItem").innerHTML == "") {
         document.getElementById("ordainketa").innerHTML = "<h5>Nahi dituzun produktuak gehitu saskira!</h5><br><br>Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
         document.getElementById("divDatos").style.display = "none";
@@ -18,16 +15,23 @@ if (sessionStorage.getItem("logState") == "true") { //si estamos logueados
     }
     document.getElementById("divDatos").style.display = "initial";
 }
-else {  //si no estamos logueados
-    document.getElementById("ordainketa").innerHTML = "<h5>Logeatu eta nahi dituzun produktuak gehitu saskira!</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
+else{
+    document.getElementById("ordainketa").innerHTML = "<h5>Ez daude produkturik saskian, logeatu eta Janarien orritik produktuak gehitu saskira</h5><br><br> Hauek dira ordaintzeko erabil ahal dituzun  metodoak";
     document.getElementById("divSaskia").style.display = "none"
     document.getElementById("divDatos").style.display = "none"
     document.getElementById("parentDivForm").style.display = "none"
 }
 
+if (localStorage.getItem("logState") == "true") { //si estamos logueados
+
+}
+else {  //si no estamos logueados
+
+}
+
 //Enseña los dos formularios de pago
 function showAllForms() {
-    if (sessionStorage.getItem("logState") == "true") {
+    if (document.querySelectorAll('.usuarioNombreLogado').length>0) {
         if (document.getElementById("saskiItem").innerHTML != "") {
             document.getElementById("parentDivForm").style.display = "block"
             document.getElementById("divTxartela").style.display = "inline-block"
@@ -38,7 +42,7 @@ function showAllForms() {
 
 //Enseña solo el formulario de direccion
 function showAddressForm() {
-    if (sessionStorage.getItem("logState") == "true") {
+    if(document.querySelectorAll('.usuarioNombreLogado').length>0) {
         if (document.getElementById("saskiItem").innerHTML != "") {
             document.getElementById("parentDivForm").style.display = "block"
             document.getElementById("divHelbidea").style.display = "inline-block"
@@ -56,7 +60,7 @@ function validateForms() {
             document.getElementById("owner").value != "" && document.getElementById("cvv").value != "" &&
             document.getElementById("cardNumber").value != "") {
 
-            sessionStorage.setItem("estadoKarrito", "");
+            localStorage.setItem("estadoKarrito", "");
             window.location.href = "index.html";
             alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
         }
@@ -67,7 +71,7 @@ function validateForms() {
     else {
         if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "") {
 
-            sessionStorage.setItem("estadoKarrito", "");
+            localStorage.setItem("estadoKarrito", "");
             window.location.href = "index.html";
             alert("Eskaria ondo egin da, laster janaria zure etxera helduko da!");
         }
@@ -79,7 +83,7 @@ function validateForms() {
 
 function refreshCart() {
     kopuruak = new Array();
-    kopuruak = JSON.parse(sessionStorage.getItem("estadoKarrito"));
+    kopuruak = JSON.parse(localStorage.getItem("estadoKarrito"));
 
     //json
     //var jsonString= JSON.stringify(kopuruak);   
