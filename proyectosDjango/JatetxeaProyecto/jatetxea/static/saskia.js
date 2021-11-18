@@ -1,3 +1,6 @@
+$(document).ready(function() {
+
+});
 
 if (localStorage.getItem("estadoKarrito") !== null && localStorage.getItem("estadoKarrito").length > 0) {
     refreshCart();
@@ -20,13 +23,6 @@ else{
     document.getElementById("divSaskia").style.display = "none"
     document.getElementById("divDatos").style.display = "none"
     document.getElementById("parentDivForm").style.display = "none"
-}
-
-if (localStorage.getItem("logState") == "true") { //si estamos logueados
-
-}
-else {  //si no estamos logueados
-
 }
 
 //Enseña los dos formularios de pago
