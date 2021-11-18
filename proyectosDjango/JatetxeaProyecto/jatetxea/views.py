@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from jatetxea.models import Janariak, Janarimota, Repartidor, Saskia, Eskaera
 from datetime import date, datetime
 from django.contrib.auth.hashers import make_password
+from django.template.loader import render_to_string
+from JatetxeaProyecto.settings import EMAIL_HOST_USER
 import json
 
 # Create your views here.
