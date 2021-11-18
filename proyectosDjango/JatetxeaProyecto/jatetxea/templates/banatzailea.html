@@ -5,11 +5,13 @@
 {% block content %}
 
 <section class="u-clearfix u-section-3 colorfondo" id="sec-907d" >
-  <div class="u-sheet">
+
+{% if user.is_authenticated %}
+<div class="u-sheet">
   <h1 style="text-align: center; color: black;">BANATZAILEA</h1>
 </div>
     <div class="iframe margins row">
-      <img src="{% static 'images/repartidor.jpg' %}" width="100%" style="border-radius: 30%;" >
+      <img src="{% static 'images/repartidor.png' %}">
       </div>
   <div class="margins" style="float: left;width: 600px;height: auto; padding-top: 40px;max-width: 100%;margin:auto; margin-top: 4%;">
     <form action="/banatzailea/" method="POST"  style="margin: auto;  width: 300px;">{% csrf_token %}
@@ -53,6 +55,10 @@
     </fieldset>
     </form>
   </div>
+{% else %}
+<h1>Logeatu admin kontu batekin web orrialdera sartu ahal izateko</h1>
+{% endif %}
+  
 </section>
 
 {% endblock %}
