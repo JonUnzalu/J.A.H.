@@ -2,14 +2,18 @@
     <body>
         <br>
         <h3>Acabas de realizar una compra</h3>
-        <p>Estimado <strong>{{izena}}</strong> ,</p>
+        <p>Estimado {{izena}} ,</p>
         Gracias por comprar en nuestra pagina.
         <br>
         <p>Tu compra es la siguiente: </p>
+        {% for kopuru in kopuruak %}
+        <p>{{kopuru.desJanari}} x{{kopuru.kopurua}} {{kopuru.prezioa}}/u</p>
+        {% endfor %}
+        <p>Precio total: {{totala}}€</p>
         <br>
         J.A.H
         <br>
         <br>
-        <img src='https://c.tenor.com/cl4tH_d69P0AAAAC/swords-sao.gif'>
+        <img src="https://c.tenor.com/cl4tH_d69P0AAAAC/swords-sao.gif%27%3E"/>
     </body>
 </html>

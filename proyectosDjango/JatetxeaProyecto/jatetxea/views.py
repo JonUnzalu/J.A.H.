@@ -229,6 +229,22 @@ def confirm_purchase(request):
 
     if kopuruak != "[]":
         janarienLista = json.loads(kopuruak)
+        dineroTotal = 0.0
+
+        for i in range(len(janarienLista)):
+            precioUnidad = janarienLista[i]['prezioa']
+            lenPrecio = len(precioUnidad)
+            removeLast = precioUnidad[:lenPrecio-1]
+            intpreciounidad = float(removeLast)
+
+            cantidadUnidad = janarienLista[i]['kopurua']
+            intcantidadunidad = int(cantidadUnidad)
+
+            precioTotal = intcantidadunidad * intpreciounidad
+
+            dineroTotal = dineroTotal + precioTotal
+
+
         if Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0) is not None:
             eskaeraBusca=Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0)
             if eskaeraBusca.count() > 0:
@@ -237,11 +253,26 @@ def confirm_purchase(request):
                 eskaeraEncontrado.baieztatua = 1
                 eskaeraEncontrado.save()
                 Saskia.objects.filter(codEskaera=idEskaera).delete()
-            
+
             else:
                 eskaeraNuevo=Eskaera(None,bezeroErabiltzailea,date.today() ,1 , 0, "123456")
                 eskaeraNuevo.save() 
-    
+
+        email = EmailMessage(
+            subject="J.A.H Erosketa",
+            body=render_to_string("email_template3.html",{"kopuruak":janarienLista,"izena":bezeroErabiltzailea,"totala":dineroTotal}),
+            from_email=EMAIL_HOST_USER,
+            to=[EMAIL_HOST_USER],
+            reply_to=[EMAIL_HOST_USER],
+        )
+
+        try:
+            email.content_subtype = "html"
+            email.send()
+
+        except:
+            return render(request, "bai.html",)
+
     return HttpResponseRedirect("/")
 
 
