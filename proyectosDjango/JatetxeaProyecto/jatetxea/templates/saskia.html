@@ -20,11 +20,11 @@
 <div id="ordainketaMetodoak"
   class="u-align-center u-container-style u-layout-cell u-center-cell u-opacity u-opacity-85 u-size-30 u-white u-layout-cell-1"
   style="margin: auto; max-width: 100%;">
-  <div class=" u-container-layout" style="margin: auto;" onclick="showAllForms()">
+  <div class=" u-container-layout" style="margin: auto;" id="creditoDiv">
     <h3>Kreditu txartelaz</h3>
     <img src="{% static 'images/iconopaypal.png' %}" style="padding: 0px; width: 200px; height: auto;">
   </div>
-  <div class=" u-container-layout" style="margin: auto;" onclick="showAddressForm()">
+  <div class=" u-container-layout" style="margin: auto;" id="efectivoDiv">
     <h3>Eskuz</h3>
     <img src="{% static 'images/iconoeskuz.png' %}" style="padding: 0px; width: 235px; height: auto;">
   </div>
@@ -84,9 +84,7 @@
     </div>
   </div>
   <div class="form-group" id="pay-now">
-    <button type="submit" onclick="validateForms()"
-      style="height: 60px; width: 250px;   font-size: 24px; background-color: #2ec4a5;" class="btn btn-default"
-      id="confirm-purchase">Baieztatu</button>
+    <button type="submit" style="height: 60px; width: 250px;   font-size: 24px; background-color: #2ec4a5;" class="btn btn-default" id="confirm-purchase">Baieztatu</button>
   </div>
 </div>
 <br>

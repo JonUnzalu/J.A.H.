@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from jatetxea.views import index,janaria,kontaktua,saskia,banatzailea,redirect,register,user_login,user_logout,categoria, categoriaString
+from jatetxea.views import index,janaria,kontaktua,saskia,banatzailea,redirect,register,user_login,user_logout,categoria, categoriaString, confirm_purchase
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('register/', register, name="Register"),
     path('login/', user_login, name="Login"),
     path('logout/', user_logout, name="Logout"),
+    path('confirmarPedido/', confirm_purchase, name="Confirmar"),
     path('categoria/<int:categoria_id>/', categoria, name="Categoria"),
     path('categoria/<str:categoria>/', categoriaString, name="Categoria"),
 

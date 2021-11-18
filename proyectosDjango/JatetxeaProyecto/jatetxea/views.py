@@ -187,6 +187,23 @@ def user_logout(request):
     return render(request, "login.html",)
 
 
+def confirm_purchase(request):
+    kopuruak = request.POST.get("kopuruakuwu")
+    bezeroErabiltzailea = request.user.username
+
+    if kopuruak != "[]":
+        janarienLista = json.loads(kopuruak)
+        if Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0) is not None:
+            eskaeraBusca=Eskaera.objects.filter(bezeroErabiltzailea=bezeroErabiltzailea, baieztatua=0)
+            if eskaeraBusca.count() > 0:
+                eskaeraEncontrado = eskaeraBusca[0]
+                idEskaera = eskaeraEncontrado.id
+                eskaeraEncontrado.baieztatua = 1
+                eskaeraEncontrado.save()
+                Saskia.objects.filter(codEskaera=idEskaera).delete()
+    
+    return HttpResponseRedirect("/")
+
 
 class SaskiItem():
     def __init__(self):   # constructor function using self
