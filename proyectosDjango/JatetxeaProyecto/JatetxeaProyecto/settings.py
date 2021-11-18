@@ -132,12 +132,17 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT=  'jatetxea/static/media'
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST ='smtp.gmail.com'
-EMAIL_USE_TLS =True
+#EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST = 'localhost'
+#EMAIL_USE_TLS =True
+EMAIL_USE_TLS =False
 EMAIL_USE_SSL =False
 EMAIL_PORT =587
-EMAIL_HOST_USER ='juanitoelgolondrina2021@gmail.com'
-EMAIL_HOST_PASSWORD ='thclkkresbouvarr'
+#EMAIL_HOST_USER ='juanitoelgolondrina2021@gmail.com'
+#EMAIL_HOST_PASSWORD ='thclkkresbouvarr'
+EMAIL_HOST_USER ='admin@j.a.h.com'
+EMAIL_HOST_PASSWORD ='Admin12345'
+DEFAULT_FROM_EMAIL = 'admin@j.a.h.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

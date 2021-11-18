@@ -58,7 +58,8 @@ $(document).ready(function() {
             if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" &&
                 document.getElementById("owner").value != "" && document.getElementById("cvv").value != "" &&
                 document.getElementById("cardNumber").value != "") {
-    
+                
+                alert("Zure eskaria ondo egin da. Laster janaria zure atean izango duzu.");
                 confirmarPedido();
             }
             else {
@@ -67,7 +68,7 @@ $(document).ready(function() {
         }
         else {
             if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "") {
-    
+                alert("Zure eskaria ondo egin da. Laster janaria zure atean izango duzu.");
                 confirmarPedido();
             }
             else {
@@ -143,5 +144,6 @@ $(document).ready(function() {
         });
 
         localStorage.clear();
+        location.href = "/"
     }
 });

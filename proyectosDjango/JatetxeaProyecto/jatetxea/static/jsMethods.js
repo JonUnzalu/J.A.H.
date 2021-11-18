@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     $("#logout1,#logout2").click(function() {
+        location.href="/"
         logOut();
     });
 
@@ -69,7 +70,10 @@ $(document).ready(function() {
             error : function(xhr,errmsg,err) {
             }
         });
+
         localStorage.clear();
+        location.href="/"
+
     }
 
     function getCookie(name) {

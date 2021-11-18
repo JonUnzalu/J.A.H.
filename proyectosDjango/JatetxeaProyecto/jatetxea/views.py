@@ -35,28 +35,29 @@ def categoriaString(request, categoria):
     return HttpResponseRedirect("/janaria/")
 
 def kontaktua(request):
-    if request.method=="POST":
 
-        email=EmailMessage(
-            'Hello',
-            'Body goes here',
-            'juanitoelgolondrina2021@gmail.com',
-            ['juanitoelgolondrina2021@gmail.com'],
-            reply_to=['juanitoelgolondrina2021@gmail.com'],
-            headers={'Message-ID': 'foo'},
+    if request.method=="POST":
+        nombre=request.POST["fname"]
+        correo=request.POST["email"]
+        telefono=request.POST["phone"]
+        mensaje=request.POST["message"]
+
+        email = EmailMessage(
+            subject="J.A.H Contact",
+            body=render_to_string( "email_template1.html",{"izena":nombre,"email":correo,"phone":telefono,"message":mensaje}),
+            from_email=EMAIL_HOST_USER,
+            to=[EMAIL_HOST_USER],
+            reply_to=[EMAIL_HOST_USER],
         )
 
         try:
+            email.content_subtype = "html"
             email.send()
-            #return redirect( "index.html",)
             return render(request, "index.html",)
 
 
         except:
-            #return redirect( "bai.html",)
             return render(request, "bai.html",)
-
-        #send_mail('Asunto','El mensaje',settings.EMAIL_HOST_USER,['juanitobaaaaai@gmail.com'])
 
     return render(request, "Contact.html",)
 
@@ -87,6 +88,39 @@ def banatzailea(request):
 
 def redirect(request):
     return render(request, "index.html",)
+
+def register(request):
+    if request.method=="POST":
+        izena=request.POST["name"]
+        abizena=request.POST["surname"]
+        email=request.POST["email"]
+        username=request.POST["username"]
+        password=request.POST["password"]
+
+        erabiltzailea=User(None,make_password(password),None,0,username,izena,abizena,email,0,1,datetime.now())
+        erabiltzailea.save()
+
+        #email
+        mail = EmailMessage(
+            subject="J.A.H Register",
+            body=render_to_string( "email_template2.html",{"izena":izena,"abizena":abizena,"email":email,"password":password}),
+            from_email=EMAIL_HOST_USER,
+            to=[email],
+            reply_to=[EMAIL_HOST_USER],
+        )
+
+        try:
+            mail.content_subtype = "html"
+            mail.send()
+
+
+        except:
+            return render(request, "bai.html",)
+        #
+
+        return render(request, "index.html")
+
+    return render(request, "register.html")
 
 def register(request):
     if request.method=="POST":
@@ -184,7 +218,7 @@ def user_logout(request):
                 eskaeraBusca.delete()
 
     logout(request)
-    return render(request, "login.html",)
+    return HttpResponseRedirect("/redirect/")
 
 
 def confirm_purchase(request):
@@ -201,6 +235,10 @@ def confirm_purchase(request):
                 eskaeraEncontrado.baieztatua = 1
                 eskaeraEncontrado.save()
                 Saskia.objects.filter(codEskaera=idEskaera).delete()
+            
+            else:
+                eskaeraNuevo=Eskaera(None,bezeroErabiltzailea,date.today() ,1 , 0, "123456")
+                eskaeraNuevo.save() 
     
     return HttpResponseRedirect("/")
 
