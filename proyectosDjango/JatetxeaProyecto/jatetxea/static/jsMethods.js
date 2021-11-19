@@ -1,27 +1,26 @@
 
-$(document).ready(function() {
-    $("#logout1,#logout2").click(function() {
-        location.href="/"
+$(document).ready(function () {
+    $("#logout1,#logout2").click(function () {
+        location.href = "/"
         logOut();
     });
 
     var janariakCarrito = new Array()
 
-    var cantidadSaskiItems = document.querySelectorAll('.sesioSaskiItems').length
-    if(cantidadSaskiItems>0){
-        
+    if (!location.toString().includes('janaria')) {
         var cantidadComidas = document.querySelectorAll('.kopuruak').length;
-        if(cantidadComidas>0){
-            
-            $(".kopuruak").each(function() {
-                var itemInfo = $(this).html();  
+        if (cantidadComidas > 0) {
+
+            $(".kopuruak").each(function () {
+                var itemInfo = $(this).html();
                 var idJanaria = parseInt(itemInfo.split("|")[0]);
                 var izena = itemInfo.split("|")[1];
-                var prezio = itemInfo.split("|")[2] + "€";             
-            
+                var prezio = itemInfo.split("|")[2] + "€";
+                var kopuruaMax = parseInt(itemInfo.split("|")[3]);
+
                 const kopuruxJanari = {
                     kopurua: 0,
-                    kopuruMax: 20,
+                    kopuruMax: kopuruaMax,
                     prezioa: prezio,
                     idJanari: idJanaria,
                     desJanari: izena
@@ -29,26 +28,31 @@ $(document).ready(function() {
                 janariakCarrito.push(kopuruxJanari)
             });
 
-            $(".sesioSaskiItems").each(function() {
-                var itemInfo = $(this).html();  
-                var idJanari = parseInt(itemInfo.split("|")[0]);
-                var kopuru = parseInt(itemInfo.split("|")[1]);             
-            
-                janariakCarrito[idJanari-1].kopurua = kopuru
-            });
-           
-            localStorage.setItem("estadoKarrito", JSON.stringify(janariakCarrito));  
-        }     
+            var cantidadSaskiItems = document.querySelectorAll('.sesioSaskiItems').length
+            if (cantidadSaskiItems > 0) {
+
+                $(".sesioSaskiItems").each(function () {
+                    var itemInfo = $(this).html();
+                    var idJanari = parseInt(itemInfo.split("|")[0]);
+                    var kopuru = parseInt(itemInfo.split("|")[1]);
+
+                    janariakCarrito[idJanari - 1].kopurua = kopuru
+                });
+            }
+            localStorage.setItem("estadoKarrito", JSON.stringify(janariakCarrito));
+        }
+
     }
 
-    function logOut(){
+
+    function logOut() {
         var csrftoken = getCookie('csrftoken')
         kopuruak = [];
         kopuruak = JSON.parse(localStorage.getItem("estadoKarrito"));
 
-        if (kopuruak !== null){
-            for (let i=0;i<kopuruak.length;i++){
-                if(kopuruak[i].kopurua == 0){
+        if (kopuruak !== null) {
+            for (let i = 0; i < kopuruak.length; i++) {
+                if (kopuruak[i].kopurua == 0) {
                     kopuruak.splice(i, 1);
                     i--;
                 }
@@ -64,15 +68,15 @@ $(document).ready(function() {
             data: {
                 kopuruakuwu: kopuruakuwu,
                 csrfmiddlewaretoken: csrftoken,
-                },
-            success : function(json) {
             },
-            error : function(xhr,errmsg,err) {
+            success: function (json) {
+            },
+            error: function (xhr, errmsg, err) {
             }
         });
 
         localStorage.clear();
-        location.href="/index"
+        location.href = "/index"
 
     }
 
@@ -91,4 +95,4 @@ $(document).ready(function() {
         }
         return cookieValue;
     }
-}); 
+});

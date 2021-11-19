@@ -136,6 +136,9 @@ def user_login(request):
         if user is not None:
             login(request, user)
 
+            janariak=Janariak.objects.all()
+            janarimotak=Janarimota.objects.all()
+
             if Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0) is not None:
                 eskaera=Eskaera.objects.filter(bezeroErabiltzailea=username, baieztatua=0)
 
@@ -149,12 +152,9 @@ def user_login(request):
                             saskiItem.kopurua = saskiItems[i].kopurua
 
                             saskiItemArray.append(saskiItem)
-
-                        janariak=Janariak.objects.all()
-                        janarimotak=Janarimota.objects.all()
-                        return render(request, "index.html", {"saskiItems":saskiItemArray, "janariak":janariak, "janarimotak":janarimotak})
-
-            return render(request, "index.html",)
+                            return render(request, "index.html", {"saskiItems":saskiItemArray, "janariak":janariak, "janarimotak":janarimotak})
+            
+            return render(request, "index.html", {"janariak":janariak, "janarimotak":janarimotak})
 
         else:
             return render(request, 'login.html')   
@@ -209,6 +209,9 @@ def user_logout(request):
 
 
 def confirm_purchase(request):
+    janariak=Janariak.objects.all()
+    janarimotak=Janarimota.objects.all()
+
     kopuruak = request.POST.get("kopuruakuwu")
     bezeroErabiltzailea = request.user.username
 
@@ -224,6 +227,12 @@ def confirm_purchase(request):
 
             cantidadUnidad = janarienLista[i]['kopurua']
             intcantidadunidad = int(cantidadUnidad)
+
+            #Le quitamos el stock
+            janariBusca = Janariak.objects.filter(id=int(janarienLista[i]['idJanari']))
+            janariEncontrado = janariBusca[0]
+            janariEncontrado.kopurua = int(janariEncontrado.kopurua) - intcantidadunidad
+            janariEncontrado.save()
 
             precioTotal = intcantidadunidad * intpreciounidad
 
@@ -256,10 +265,9 @@ def confirm_purchase(request):
             email.send()
 
         except:
-            return render(request, "bai.html",)
+            aaaaa = "aaaa"
 
-    return HttpResponseRedirect("/")
-
+    return render(request, "index.html", {"janariak":janariak, "janarimotak":janarimotak})
 
 class SaskiItem():
     def __init__(self):   # constructor function using self
