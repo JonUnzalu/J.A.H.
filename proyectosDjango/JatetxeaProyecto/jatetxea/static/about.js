@@ -1,3 +1,20 @@
+$(document).ready(function() {
+
+    $(".substractImagen").click(function () {
+        var stringId = $(this).attr('janariId');
+        var id = parseInt(stringId);        
+        
+        subtractFood(id);
+    });
+
+    $(".addImagen").click(function () {
+        var stringId = $(this).attr('janariId');
+        var id = parseInt(stringId);
+
+        addFood(id);
+    });
+});
+
 //ABOUT.HTML
 var kopuruak = new Array()
 var cantidadComidas = document.querySelectorAll('.kopuruak').length;

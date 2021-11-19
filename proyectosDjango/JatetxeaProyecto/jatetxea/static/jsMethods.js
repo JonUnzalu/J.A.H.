@@ -72,7 +72,7 @@ $(document).ready(function() {
         });
 
         localStorage.clear();
-        location.href="/"
+        location.href="/index"
 
     }
 
