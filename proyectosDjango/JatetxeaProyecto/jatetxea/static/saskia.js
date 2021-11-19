@@ -54,10 +54,12 @@ $(document).ready(function() {
     }
 
     $("#confirm-purchase").click(function(){
+        var expreg = new RegExp(/^[0-9]{16}$/);
+        var cn = document.getElementById("cardNumber").value;
         if (document.getElementById("divTxartela").style.display == "inline-block") {
-            if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" &&
+            if (document.getElementById("pk").value != ""  && document.getElementById("helbidea").value != "" &&
                 document.getElementById("owner").value != "" && document.getElementById("cvv").value != "" &&
-                document.getElementById("cardNumber").value != "") {
+               cn != ""&& expreg.test(cn)){
                 
                 alert("Zure eskaria ondo egin da. Laster janaria zure atean izango duzu.");
                 confirmarPedido();

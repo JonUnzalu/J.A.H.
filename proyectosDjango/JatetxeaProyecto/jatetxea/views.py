@@ -124,21 +124,6 @@ def register(request):
 
     return render(request, "register.html")
 
-def register(request):
-    if request.method=="POST":
-        izena=request.POST["name"]
-        abizena=request.POST["surname"]
-        email=request.POST["email"]
-        username=request.POST["username"]
-        password=request.POST["password"]
-
-
-        erabiltzailea=User(None,make_password(password),None,0,username,izena,abizena,email,0,1,datetime.now())
-        erabiltzailea.save()
-        return render(request, "index.html")
-
-    return render(request, "register.html")
-
 def user_login(request):
     saskiItemArray = []
 
