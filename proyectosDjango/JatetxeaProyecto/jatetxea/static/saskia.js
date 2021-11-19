@@ -54,6 +54,7 @@ $(document).ready(function() {
     }
 
     $("#confirm-purchase").click(function(){
+
         var expregcn = new RegExp(/^[0-9]{16}$/);
         var expregpk = new RegExp(/^[0-9]{5}$/);
         var expregcvv = new RegExp(/^[0-9]{3}$/);
