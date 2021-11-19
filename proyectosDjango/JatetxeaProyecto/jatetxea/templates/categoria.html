@@ -8,16 +8,6 @@
 <link rel="stylesheet" href="{% static 'About.css' %}" media="screen">
 <script class="u-script" type="text/javascript" src="{% static 'about.js' %}" defer=""></script>
 
-<!--
-<div style="position: relative;color: black; width: 100px; height: auto; margin: auto;">
-    Categorias
-    <ul class="u-nav u-unstyled u-nav-1">
-        {% for janariTipo in janarimotak %}
-            <li style="display: inline;"><a href="#"></a>{{janariTipo.izena}}</a></li>
-        {% endfor %}
-    </ul>
-</div>
--->
 <ul class="nav nav-tabs"  style=" display: flex;justify-content: center;">
     <li class="nav-item">
         <a class="nav-link active" id="home-tab" href="{% url 'Janaria' %}">Dena</a>
