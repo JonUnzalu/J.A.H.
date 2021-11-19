@@ -54,10 +54,16 @@ $(document).ready(function() {
     }
 
     $("#confirm-purchase").click(function(){
+        var expregcn = new RegExp(/^[0-9]{16}$/);
+        var expregpk = new RegExp(/^[0-9]{5}$/);
+        var expregcvv = new RegExp(/^[0-9]{3}$/);
+        var cn = document.getElementById("cardNumber").value;
+        var pk = document.getElementById("pk").value;
+        var cvv = document.getElementById("cvv").value;
         if (document.getElementById("divTxartela").style.display == "inline-block") {
-            if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "" &&
-                document.getElementById("owner").value != "" && document.getElementById("cvv").value != "" &&
-                document.getElementById("cardNumber").value != "") {
+            if ( pk != ""  && expregpk.test(pk) && document.getElementById("helbidea").value != "" &&
+                document.getElementById("owner").value != "" && cvv != "" && expregcvv.test(cvv) &&
+               cn != ""&& expregcn.test(cn)) {
                 
                 alert("Zure eskaria ondo egin da. Laster janaria zure atean izango duzu.");
                 confirmarPedido();
@@ -67,7 +73,7 @@ $(document).ready(function() {
             }
         }
         else {
-            if (document.getElementById("pk").value != "" && document.getElementById("helbidea").value != "") {
+            if (pk != "" && expregpk.test(pk) && document.getElementById("helbidea").value != "") {
                 alert("Zure eskaria ondo egin da. Laster janaria zure atean izango duzu.");
                 confirmarPedido();
             }

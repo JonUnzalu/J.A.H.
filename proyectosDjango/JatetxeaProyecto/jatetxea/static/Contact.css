@@ -16,9 +16,7 @@ input:valid+span:after {
   padding-left: 5px;
 }
 .colorfondo{
-  background: rgb(253,45,45);
-  background: linear-gradient(0deg, rgba(253,45,45,1) 36%, rgba(233,233,233,1) 86%);
-
+  background-color: lightgray;
 }
 .imagenfondo {
   background-image: url("/static/images/contactofondo.jpg");
