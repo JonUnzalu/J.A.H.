@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var janariakCarrito = new Array()
 
-    if (!location.toString().includes('janaria')) {
+    if (!location.toString().includes('janaria') && !location.toString().includes('categoria')) {
         var cantidadComidas = document.querySelectorAll('.kopuruak').length;
         if (cantidadComidas > 0) {
 
@@ -41,7 +41,6 @@ $(document).ready(function () {
             }
             localStorage.setItem("estadoKarrito", JSON.stringify(janariakCarrito));
         }
-
     }
 
 
