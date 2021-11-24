@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    $("#logout1,#logout2").click(function () {
+    $("#logout1,#logout2,#logout3").click(function () {
         location.href = "/"
         logOut();
     });

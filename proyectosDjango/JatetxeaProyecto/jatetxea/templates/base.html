@@ -151,13 +151,23 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Kontaktua' %}"
                     style="color: white;">Kontaktoa</a>
                 </li>
+                
+                {% if user.is_superuser %}
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'Banatzailea' %}"
-                    style="color: white;">Banatzailea</a>
+                  style="color: white;">Banatzailea</a>
                 </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" style="color: rgb(255, 255, 255);"
-                    href="{% url 'Logout' %}">Logout
-                  </a>
+                  href="" id="logout3">Logout</a>
                 </li>
+                {% else %}
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" style="color: rgb(255, 255, 255);"
+                  href="{% url 'Login' %}">Login</a>
+                </li>
+                {% endif %}
+
                 <li class="u-nav-item"><a class="u-button-style u-nav-link " href="/saskia/"><svg
                       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
                       viewBox="0 0 16 16">
