@@ -152,7 +152,7 @@ def user_login(request):
                             saskiItem.kopurua = saskiItems[i].kopurua
 
                             saskiItemArray.append(saskiItem)
-                            return render(request, "index.html", {"saskiItems":saskiItemArray, "janariak":janariak, "janarimotak":janarimotak})
+                        return render(request, "index.html", {"saskiItems":saskiItemArray, "janariak":janariak, "janarimotak":janarimotak})
             
             return render(request, "index.html", {"janariak":janariak, "janarimotak":janarimotak})
 
